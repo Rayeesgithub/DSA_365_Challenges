@@ -13,9 +13,9 @@ class Solution {
     }
 //Approach2-optimal
  long long gcd(long long A, long long B) {
-        if (B == 0)
-            return A;
-        return gcd(B, A % B);
+        if (A == 0)
+            return B;
+        return gcd(B%A, A);
     }
 
     vector<long long> lcmAndGcd(long long A, long long B) {
