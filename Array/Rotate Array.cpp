@@ -1,3 +1,5 @@
+//https://leetcode.com/problems/rotate-array/
+// striver sheet
 void rotate(vector<int>& nums, int k) {
     int n = nums.size();
     vector<int> temp(n); // Create a temporary vector to store the rotated elements
