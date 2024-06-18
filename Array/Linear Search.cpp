@@ -1,3 +1,5 @@
+// gfg> Array Search
+// striver sheet
 #include<iostream>
 using namespace std;
 bool LinearSearch(int arr[],int target,int size){
