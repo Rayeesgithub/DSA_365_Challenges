@@ -14,20 +14,19 @@ void moveZeroes(vector<int>& nums) {
             temp.push_back(nums[i]);
         }
     }
- // Add zero elements to the temporary vector
-    for (int i = 0; i < n; i++) {
-        if (nums[i] == 0) {
-            temp.push_back(nums[i]);
-        }
-    }
-// Copy elements from the temporary vector back to the original vector
-    for (int i = 0; i < n; i++) {
+ int size=temp.size();
+    
+    // Copy elements from the temporary vector back to the original vector
+    for (int i = 0; i < size; i++) {
         nums[i] = temp[i];
     }
 
-
+    for (int i = size; i < n; i++) {
+       
+            nums[i]=0; }
   
-// second approach-> using two pointer T.Complexity=0(n) && space complexity=0(1)
+
+    // second approach-> using two pointer T.Complexity=0(n) && space complexity=0(1)
 int j=-1;
 for(int i=0; i<n; i++){
 if(nums[i]==0) {
