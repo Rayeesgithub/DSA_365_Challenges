@@ -45,19 +45,17 @@ int lenOfLongSubarr(int A[],  int N, int K)
             maxLen = max(maxLen, i + 1);
         }
 
-        // calculate the sum of remaining part i.e. x-k:
-        int rem = sum - K;
-   
         //Calculate the length and update maxLen:
-        if (preSumMap.find(rem) != preSumMap.end()) {
-            int len = i - preSumMap[rem];
-            maxLen = max(maxLen, len);
-        }
+      int rem = sum - K;  // Calculate the sum of the remaining part (sum - K)
 
-        //Finally, update the map checking the conditions:
-        if (preSumMap.find(sum) == preSumMap.end()) {
-            preSumMap[sum] = i;
-        }
+    if (preSumMap.find(rem) != preSumMap.end()) {  // If the remaining sum is found in the map
+        int len = i - preSumMap[rem];  // Calculate the length of the subarray
+        maxLen = max(maxLen, len);  // Update maxLen if this subarray is longer
+    }
+
+    if (preSumMap.find(sum) == preSumMap.end()) {  // If the current prefix sum is not in the map
+        preSumMap[sum] = i;  // Add it with its index
+    }
     }
 
     return maxLen;
