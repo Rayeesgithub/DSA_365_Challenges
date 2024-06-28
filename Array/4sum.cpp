@@ -1,5 +1,5 @@
 https://leetcode.com/problems/4sum/
-//striver
+//striver sheet
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
