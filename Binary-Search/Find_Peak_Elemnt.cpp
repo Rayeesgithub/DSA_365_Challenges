@@ -1,5 +1,5 @@
-
-
+https://leetcode.com/problems/find-peak-element/
+// striver sheet
 //
 // Broute Force
 int findPeakElement(vector<int>& nums) {
@@ -17,32 +17,43 @@ int findPeakElement(vector<int>& nums) {
         return index;
     }
 
+
 // optimal Approach
-explain this code using comment line->class Solution {
+class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
-        int s=1; 
-        int e=nums.size()-2;
-        int n=nums.size();
-        if(n==1) return 0;
-        if(nums[0]>nums[1]) return 0;
-         if (nums[n - 1] > nums[n - 2]) return n - 1;
-        while(s<=e){
-            int mid=s+(e-s)/2; 
-       
-          //If arr[mid] is the peak:
-            if( nums[mid-1]<=nums[mid] && nums[mid]>nums[mid+1]){
-               return mid;
+        // Start from the second element (index 1) and go up to the second last element (index n-2)
+        int s = 1; 
+        int e = nums.size() - 2;
+        int n = nums.size();
+        
+        // Edge case: if there's only one element, it's the peak
+        if (n == 1) return 0;
+        
+        // Edge case: if the first element is greater than the second, it's a peak
+        if (nums[0] > nums[1]) return 0;
+        
+        // Edge case: if the last element is greater than the second last, it's a peak
+        if (nums[n - 1] > nums[n - 2]) return n - 1;
+        
+        // Perform binary search between the second and second last elements
+        while (s <= e) {
+            int mid = s + (e - s) / 2; // Calculate mid to avoid overflow
+            
+            // If nums[mid] is greater than its neighbors, it's a peak
+            if (nums[mid - 1] <= nums[mid] && nums[mid] > nums[mid + 1]) {
+                return mid;
             }
-            // If we are in the left:
-            if(nums[mid-1]<nums[mid]){
-                s=mid+1;
-            }
-            else{
-                e=mid-1;
+            
+            // If we are in the left part of the peak
+            if (nums[mid - 1] < nums[mid]) {
+                s = mid + 1; // Move to the right part
+            } else {
+                e = mid - 1; // Move to the left part
             }
         }
         
-        return 0;
-    }
+        // Default return statement, ideally never reached
+        return 0;
+    }
 };
