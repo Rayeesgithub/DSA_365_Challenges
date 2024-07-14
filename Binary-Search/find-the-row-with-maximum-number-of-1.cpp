@@ -37,3 +37,34 @@ int main()
     cout << "The row with maximum no. of 1's is: " <<
          rowWithMax1s(matrix, n, m) << '\n';
 }
+
+
+// optimal approach
+int findone(vector<int> &arr, int m, int one) {
+    int s = 0; 
+    int e = m - 1;
+    int ans = m; // Initialize to m, which means no 1 is found in the worst case.
+    while (s <= e) {
+        int mid = s + (e - s) / 2;
+        if (arr[mid] >= one) { // Check if current element is 1 or more.
+            ans = mid; // Update the answer to current mid.
+            e = mid - 1; // Move to the left half.
+        } else {
+            s = mid + 1; // Move to the right half.
+        }
+    }
+    return ans;
+}
+
+int rowWithMax1s(vector<vector<int>> &arr, int n, int m) {
+    int max = 0; 
+    int index = -1; // To store the row index with maximum 1s.
+    for (int i = 0; i < n; i++) {
+        int count_one = m - findone(arr[i], m, 1); // Calculate number of 1s in the current row.
+        if (count_one > max) { // Update the maximum count and index if current row has more 1s.
+            max = count_one;
+            index = i;
+        }
+    }
+    return index;
+}
