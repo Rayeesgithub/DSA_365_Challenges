@@ -33,3 +33,47 @@
     }
    
     }
+
+// optimal approach
+int n1 = nums1.size();
+    int n2 = nums2.size();
+    
+    // Ensure nums1 is the smaller array to minimize the number of operations.
+    if (n1 > n2) {
+        return findMedianSortedArrays(nums2, nums1);
+    }
+
+    int n = n1 + n2;
+    int leftmid = (n1 + n2 + 1) / 2;
+    int low = 0;
+    int high = n1;
+    
+    while (low <= high) {
+        int mid1 = (low + high) / 2;
+        int mid2 = leftmid - mid1;
+
+        // Boundaries
+        int l1 = (mid1 == 0) ? INT_MIN : nums1[mid1 - 1];
+        int l2 = (mid2 == 0) ? INT_MIN : nums2[mid2 - 1];
+        int r1 = (mid1 == n1) ? INT_MAX : nums1[mid1];
+        int r2 = (mid2 == n2) ? INT_MAX : nums2[mid2];
+
+        // Check if we have found the correct elements
+        if (l1 <= r2 && l2 <= r1) {
+            if (n % 2 == 0) {
+                // If total length is even
+                return (max(l1, l2) + min(r1, r2)) / 2.0;
+            } else {
+                // If total length is odd
+                return max(l1, l2);
+            }
+        } else if (l1 > r2) {
+            // Eliminate the right half of nums1
+            high = mid1 - 1;
+        } else {
+            // Eliminate the left half of nums1
+            low = mid1 + 1;
+        }
+    }
+    return 0.0;
+    }
