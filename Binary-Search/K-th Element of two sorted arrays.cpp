@@ -5,19 +5,24 @@
  int kthElement(int arr1[], int arr2[], int n, int m, int k)
     {
         vector<int>ans;
-        for(int i=0; i<n; i++){
-            ans.push_back(arr1[i]);
-        }
-        for(int i=0; i<m; i++){
-            ans.push_back(arr2[i]);
-        }
-        sort(ans.begin(),ans.end());
-        int  res=0;
-        for(int i=0; i<ans.size(); i++){
-            res=ans[k-1];
-        }
-        
-        return res;
+      
+    // Copy elements from arr1 to ans
+    for (int i = 0; i < n; i++) {
+        ans.push_back(arr1[i]);
+    }
+    
+    // Copy elements from arr2 to ans
+    for (int i = 0; i < m; i++) {
+        ans.push_back(arr2[i]);
+    }
+    
+    // Sort the merged array
+    sort(ans.begin(), ans.end());
+    
+    // Find the k-th element
+    int res = ans[k - 1];
+    
+    return res;
     }
 // broute force 2-> Time Complexity: O(m+n)  Space Complexity: O(m+n)
 int kthElement(int arr1[], int arr2[], int n, int m, int k) {
@@ -86,23 +91,36 @@ int kthElement(vector<int> &a, vector<int>& b, int m, int n, int k) {
 
 //optimal -2
 int kthElement(int arr1[], int arr2[], int n, int m, int k) {
-    vector<int> ans;
-    
-    // Copy elements from arr1 to ans
-    for (int i = 0; i < n; i++) {
-        ans.push_back(arr1[i]);
+    // Ensure arr1 is the smaller array to minimize the number of operations.
+    if (n > m) return kthElement(arr2, arr1, m, n, k);
+
+    // Initialize binary search bounds
+    int low = max(0, k - m);
+    int high = min(k, n);
+
+    // Perform binary search
+    while (low <= high) {
+        // Calculate the cut points
+        int cut1 = (low + high) / 2;
+        int cut2 = k - cut1;
+
+        // Determine the elements just before and just after the cuts
+        int l1 = (cut1 == 0) ? INT_MIN : arr1[cut1 - 1];
+        int l2 = (cut2 == 0) ? INT_MIN : arr2[cut2 - 1];
+        int r1 = (cut1 == n) ? INT_MAX : arr1[cut1];
+        int r2 = (cut2 == m) ? INT_MAX : arr2[cut2];
+
+        // Check if we have found the correct partition
+        if (l1 <= r2 && l2 <= r1) {
+            return max(l1, l2);
+        } 
+        // Adjust the search range
+        else if (l1 > r2) {
+            high = cut1 - 1;
+        } 
+        else {
+            low = cut1 + 1;
+        }
     }
-    
-    // Copy elements from arr2 to ans
-    for (int i = 0; i < m; i++) {
-        ans.push_back(arr2[i]);
-    }
-    
-    // Sort the merged array
-    sort(ans.begin(), ans.end());
-    
-    // Find the k-th element
-    int res = ans[k - 1];
-    
-    return res;
-}
+    return -1; // This line should never be
+
