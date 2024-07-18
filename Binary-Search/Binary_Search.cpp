@@ -1,5 +1,5 @@
 https://leetcode.com/problems/binary-search/submissions/1311355898/
-// striver sheet
+// striver sheets
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
