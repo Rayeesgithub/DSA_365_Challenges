@@ -7,9 +7,9 @@ https://leetcode.com/problems/sum-of-beauty-of-all-substrings/description/
 #include <climits>
 #include <string>
 using namespace std;
-
+\\time complexity is O(n^2)   space complexity is O(1)
 int beautySum(string s) {
-    int n = s.length();  // Get the length of the input string
+    int n = s.length(); 
     int sum = 0;  // Initialize the total beauty sum
 
     // Iterate over all possible starting indices for substrings
@@ -36,7 +36,6 @@ int beautySum(string s) {
 
     return sum;  // Return the total beauty sum
 }
-
 int main() {
     string s = "aabcb";
     cout << "Total beauty sum: " << beautySum(s) << endl;
