@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/reverse-words-in-a-string/description/
-// striver
+// striver sheet
 
 broute force
 
