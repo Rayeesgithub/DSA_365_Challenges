@@ -1,6 +1,8 @@
 https://leetcode.com/problems/longest-palindromic-substring/description/
 //striver sheet
 
+
+time complexity is O(n^2) * O(n) = O(n^3)  space complexity is O(1)
 bool isPalindrome(int i, int j, string &s) {
     // Continue checking while the start index is less than or equal to the end index
     while (i <= j) {
