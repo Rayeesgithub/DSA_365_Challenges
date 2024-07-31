@@ -4,7 +4,7 @@ https://www.geeksforgeeks.org/problems/count-palindromic-subsequences/1
 #include <string>
 using namespace std;
 
-bool isPalindrome(int i, int j, string &s) {
+bool isPalindrome(int i, int j, string &s)     {
     while (i <= j) {
         if (s[i] != s[j]) {
             return false;
