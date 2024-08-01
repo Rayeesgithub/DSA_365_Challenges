@@ -13,16 +13,21 @@
 
 
 
+//approach2
+bool check(vector<int>& nums) {
+    int n = nums.size();
+    int count = 0;
 
-
-// broute force 
-bool isSorted(int arr[], int n) {
-  for (int i = 0; i < n; i++) {
-    for (int j = i + 1; j < n; j++) {
-      if (arr[j] < arr[i])
-        return false;
+    for (int i = 0; i < n; i++) {
+        if (nums[i] > nums[(i + 1) % n]) {
+            count++;
+        }
+        // More than one break point means the array can't be sorted by a single rotation
+        if (count > 1) {
+            return false;
+        }
     }
-  }
+    return true;
 
-  return true;
-}
+
+
