@@ -10,6 +10,11 @@
         if(nums[n-1]>nums[0]) count++;
         return count==1 ? true : false;
     }
+
+
+
+
+
 // broute force 
 bool isSorted(int arr[], int n) {
   for (int i = 0; i < n; i++) {
