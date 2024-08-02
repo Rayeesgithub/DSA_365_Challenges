@@ -1,5 +1,6 @@
 //striver sheet
 
+T.C= best-case o(n) && worst-case=0(n^2)
 #include <iostream>
 #include <vector>
 using namespace std;
