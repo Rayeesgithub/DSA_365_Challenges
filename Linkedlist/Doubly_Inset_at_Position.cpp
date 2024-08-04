@@ -1,4 +1,6 @@
 //love bbar
+https://www.geeksforgeeks.org/problems/insert-a-node-in-doubly-linked-list/1
+
 
 #include<iostream>
 using namespace std;
