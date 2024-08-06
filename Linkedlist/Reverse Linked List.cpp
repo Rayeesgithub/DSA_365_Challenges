@@ -24,3 +24,24 @@ ListNode* reverseList(ListNode* head) {
     
     // At the end of the loop, prev will be pointing to the new head of the reversed list
     return prev;
+
+
+
+// Recursive Approach
+ ListNode* reverseFxn(ListNode* prev, ListNode* curr){
+           if(curr==NULL){
+            return prev;
+        }
+        ListNode* forward=curr->next;
+        curr->next=prev;
+       return reverseFxn(curr,forward);
+    }
+    ListNode* reverseList(ListNode* head) {
+         ListNode* prev=NULL;
+         ListNode* curr=head;
+     
+       
+        return  reverseFxn(prev,curr);
+       
+    }
+};
