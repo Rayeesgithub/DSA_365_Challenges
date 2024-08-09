@@ -1,4 +1,4 @@
-striver sheet
+//striver sheet
 https://www.geeksforgeeks.org/problems/introduction-to-linked-list/0
 
 Time Complexity: O(n) && Auxiliary Space: O(n)
