@@ -7,8 +7,8 @@ bool checkSort(int arr[],int n,int i){
  if(arr[i]>arr[i+1]){
   return false;
  }
- checkSort(arr,n,i+1);
- return true;
+ return checkSort(arr,n,i+1);
+ 
 }
 int main(){
   int n;
