@@ -34,3 +34,30 @@ int main(){
     cout << endl;
 }
 }
+
+
+
+//leetcode
+void findSum(vector<int>& arr,vector<int>&output,int target,int i,vector<vector<int>>&ans,int n){
+  if(i==n){
+    if(target==0){
+      ans.push_back(output);
+    
+    }
+    return;
+  }
+  if(arr[i]<=target){
+    output.push_back(arr[i]);
+    findSum(arr,output,target-arr[i],i,ans,n);
+    output.pop_back();
+  }
+  findSum(arr,output,target,i+1,ans,n);
+}
+    vector<vector<int>> combinationSum(vector<int>& arr, int target) {
+         vector<int>output; int n=arr.size();
+ vector<vector<int>>ans;
+ findSum(arr,output,target,0,ans, n);
+  
+      return ans;
+    }
+};
