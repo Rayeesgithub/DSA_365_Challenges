@@ -1,4 +1,4 @@
-// striver sheet
+// striver 
 
  void findSubseq(vector<int>& s, vector<int> output, int i, vector<vector<int>>& result) {
     // Base case: If we have processed all elements of the vector
