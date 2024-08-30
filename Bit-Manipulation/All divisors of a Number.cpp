@@ -1,6 +1,6 @@
 //striver sheet
 
-//broute force
+ //broute force
   void print_divisors(int n) {
       for(int i=1; i<=n; i++){
           if(n%i==0){
