@@ -1,5 +1,28 @@
 //https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 // striver sheet
+
+
+
+
+
+//print
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+   int n=7;
+   int arr[n]={1,1,2,2,2,3,3};
+   set<int>st;
+   for(int i=0; i<n; i++){
+    st.insert(arr[i]);
+   }
+   for(auto it:st){
+    cout<<it<<" ";
+   }
+}
+
+
+
+
 // Time complexity: O(n*log(n))+O(n) && Space Complexity: O(n) 
 int removeDuplicates(int arr[], int n) {
 // sets only store unique elements.
