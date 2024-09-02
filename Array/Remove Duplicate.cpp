@@ -20,7 +20,27 @@ int main() {
    }
 }
 
-
+// second approach
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+    int n = 7;
+    int arr[n] = {1, 1, 2, 2, 2, 3, 3};
+    
+    int i = 0;
+    for (int j = 1; j < n; j++) {
+        if (arr[i] != arr[j]) {
+            i++; // Move the pointer to the next position
+            arr[i] = arr[j]; // Assign the non-duplicate element to the correct position
+        }
+    }
+    // Print the unique elements
+    for (int k = 0; k <= i; k++) {
+        cout << arr[k] << " ";
+    }
+    
+    return 0;
+}
 
 
 // Time complexity: O(n*log(n))+O(n) && Space Complexity: O(n) 
