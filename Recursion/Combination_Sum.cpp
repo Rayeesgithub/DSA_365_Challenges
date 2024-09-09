@@ -1,4 +1,4 @@
-// striver sheet
+ // striver sheet
 #include<bits/stdc++.h>
 using namespace std;
 void findSum(int arr[],vector<int>&output,int target,int i,vector<vector<int>>&ans,int n){
