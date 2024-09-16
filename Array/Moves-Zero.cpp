@@ -26,6 +26,24 @@ void moveZeroes(vector<int>& nums) {
             nums[i]=0; }
   
 
+
+// otimize approazed
+    void MoveZero(int arr[],int &n){
+   int left=0;
+   for(int right=0; right<n; right++){
+     if(arr[right]!=0){
+        swap(arr[left],arr[right]);
+        left++;
+     }
+   }
+
+   for(int i=0; i<n; i++){
+    cout<<arr[i]<<" ";
+   }
+
+
+
+        
     // second approach-> using two pointer T.Complexity=0(n) && space complexity=0(1)
 int j=-1;
 for(int i=0; i<n; i++){
