@@ -17,6 +17,23 @@ int findMaxConsecutiveOnes(vector<int>& nums) {
     return maxi;  // Return the maximum count of consecutive 1s found
 }
 
+
+//anoter approach
+  int count=0; vector<int>ans;
+    for(int i=0; i<n; i++){
+        if(arr[i]==1){
+            count++;
+        }
+        else if(arr[i]!=1){
+            ans.push_back(count);
+            count=0;
+        }
+    }
+    int maxi=INT_MIN;
+   for(int i=0;i<ans.size();i++){
+    maxi=max(maxi,ans[i]);
+   }
+   cout<<"Maximum Number of 1's:"<<maxi;
 int main() {
     vector<int> nums = {1, 1, 0, 1, 1, 1};  // Example input vector
     cout << "Max consecutive ones: " << findMaxConsecutiveOnes(nums) << endl;  // Call the function and print the result
