@@ -41,18 +41,30 @@ public:
     }
 
     //3rd approach
-    //    unordered_map<int, int> numMap;
-    //     int n = nums.size();
+  #include <bits/stdc++.h>
+using namespace std;
 
-    //     for (int i = 0; i < n; i++) {
-    //         int complement = target - nums[i];
-    //         if (numMap.count(complement)) {
-    //             return {numMap[complement], i};
-    //         }
-    //         numMap[nums[i]] = i;
-    //     }
+vector<int> twoSum(int n, vector<int> &arr, int target) {
+    unordered_map<int, int> mp;
+   for(int i=0; i<n; i++){
+    int num=arr[i];
+    int first=target-num;
+    if(mp.find(first)!=mp.end()){
+        return {mp[first],i};
+    }
+    mp[num]=i;
+   }
+    return { -1, -1};
+}
 
-    //     return {}; // No solution found
-    // 
-    //}
+int main()
+{
+    int n = 3;
+    vector<int> arr = {3,2,4};
+    int target = 6;
+    vector<int> ans = twoSum(n, arr, target);
+    cout << "This is the answer ;" << ans[0] << ", "
+         << ans[1] << endl;
+    return 0;
+}
 };
