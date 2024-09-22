@@ -1,5 +1,5 @@
 https://leetcode.com/problems/majority-element-ii/
-//striver
+//striver sheet
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
