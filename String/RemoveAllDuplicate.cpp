@@ -6,6 +6,8 @@ void removeDuplicate(string st){
   set<char>s;string ans;
 
   for(int i=0; i<n;i++){
+        // Check if the character s[i] has been encountered before using the map
+        // 's[i] - 'a'' converts the character to an index (0 for 'a', 1 for 'b', ..., 25 for 'z')
   if(s.find(st[i])==s.end()){
    ans.push_back(st[i]);
    s.insert(st[i]);
