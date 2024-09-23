@@ -29,6 +29,24 @@
       return maxprofit;
     }
 
+
+//  New Appraoch
+
+int FindMaximum(int arr[],int n){
+   int buy=INT_MAX; int index;int sell=0; int profit=0;
+   for(int i=0; i<n; i++){
+   if(buy>arr[i]){
+    buy=arr[i];
+    index=i;
+   }
+   }
+   for(int i=index; i<n; i++){
+    sell=max(sell,arr[i]);
+   }
+   profit=sell-buy;
+   if(profit<0) return 0;
+  return profit;
+}
 int main() {
     vector<int> arr = {7,1,5,3,6,4};
     int maxPro = maxProfit(arr);
