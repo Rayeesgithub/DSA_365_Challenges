@@ -2,43 +2,25 @@
 // striver sheet
 
 
-class Solution {
-    // Function to find the leaders in the array.
-  public:
-    vector<int> leaders(int n, int arr[]) {
-//         // Broute force
-//         vector<int> ans;
-//          for (int i = 0; i < n; i++) {
-//           bool leader = true;
 
-//       //Checking whether arr[i] is greater than all 
-//       //the elements in its right side
-//     for (int j = i + 1; j < n; j++)
-//       if (arr[j] > arr[i]) {
-          
-//         // If any element found is greater than current leader
-//         // curr element is not the leader.
-//         leader = false;
-//         break;
-//       }
-//   // Push all the leaders in ans array.
-//     if (leader)
-//     ans.push_back(arr[i]);
-
-//   }
-  
-//   return ans;
-    
-       // optimal approach
-       
-       vector<int>ans;
-      int maxi=INT_MIN;
-      for(int i=n-1; i>=0; i--){
-          if(arr[i]>=maxi){
-              maxi=arr[i];
-              ans.push_back(arr[i]);
-          }
-         
-      } 
-      reverse(ans.begin(),ans.end());
-      return ans;
+#include<bits/stdc++.h>
+using namespace std;
+void LeaderArr(int arr[],int n,vector<int>&ans){
+ int maxi=arr[n-1];
+ ans.push_back(maxi);
+ for(int i=n-2;i>=0; i--){
+  if(arr[i]>maxi){
+    ans.push_back(arr[i]);
+    maxi=arr[i];
+  }
+ }
+}
+int main(){
+  int n=6;
+  int arr[n]={10, 22, 12, 3, 0, 6};
+  vector<int>ans;
+  LeaderArr(arr,n,ans);
+  for(int i=ans.size()-1; i>=0; i--){
+   cout<<ans[i]<<" ";
+  }
+}
