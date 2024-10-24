@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
-// striver 
+// striver shhet
 //optimal approach-> Time Complexity: O(N)  && Space Complexity: O(1)
  bool check(vector<int>& nums) {
         int n=nums.size();
