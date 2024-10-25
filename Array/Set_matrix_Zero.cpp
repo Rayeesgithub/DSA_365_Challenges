@@ -29,6 +29,73 @@ public:
         }
 
 
+        // broute for take input
+        #include <bits/stdc++.h>
+using namespace std;
+
+void markRow(vector<vector<int>>& arr, int n, int m, int i) {
+    for (int j = 0; j < m; j++) {
+        if (arr[i][j] != 0) {
+            arr[i][j] = -1;
+        }
+    }
+}
+
+void markCol(vector<vector<int>>& arr, int n, int m, int j) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i][j] != 0) {
+            arr[i][j] = -1;
+        }
+    }
+}
+
+void setZero(vector<vector<int>>& arr, int n, int m) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (arr[i][j] == 0) {
+                markRow(arr, n, m, i);
+                markCol(arr, n, m, j);
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (arr[i][j] == -1) {
+                arr[i][j] = 0;
+            }
+        }
+    }
+}
+
+int main() {
+    int n, m;
+    cout << "Enter the number of rows: ";
+    cin >> n;
+    cout << "Enter the number of columns: ";
+    cin >> m;
+
+    vector<vector<int>>arr(n,vector<int>(m)); // Create a dynamic 2D vector based on user input
+
+    cout << "Enter the elements of the array:" << endl;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> arr[i][j];
+        }
+    }
+
+    setZero(arr, n, m);
+
+    cout << "Resultant array:" << endl;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
         
        // second approach  Time Complexity : O(N*M)  Space Complexity : O(N+M)
          int n = matrix.size();
