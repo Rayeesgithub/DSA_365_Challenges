@@ -28,16 +28,19 @@ public:
         }
 
         // Approach 2: Using Hashmap
-        unordered_map<int, int> mp; // Hashmap to store the frequency of each element
-        for (int i = 0; i < nums.size(); i++) {
-            mp[nums[i]]++; // Increment the frequency of nums[i]
+      vector<int> Majority(vector<int>&arr,int n){
+    unordered_map<int,int>mp; vector<int>ans;
+    for(int i=0; i<n; i++){
+        mp[arr[i]]++;
+    }
+
+    for(auto it:mp){
+        if(it.second>n/3){
+            ans.push_back(it.first);
         }
-        for (auto it : mp) {
-            // Check if the frequency is greater than n/3
-            if (it.second > n / 3) {
-                ans.push_back(it.first); // Add the element to the answer list
-            }
-        }
+    }
+    return ans;
+}
 
         // Approach 3: Extended Boyer-Moore Voting Algorithm
         int cnt1 = 0, cnt2 = 0; // Counters for the two majority elements
