@@ -21,6 +21,8 @@ public:
                     }
                 }
             }
+            vector<vector<int>> ans(st.begin(), st.end());
+    return ans;
         }
 
         // Better approach
