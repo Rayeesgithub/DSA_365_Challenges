@@ -2,29 +2,29 @@ https://leetcode.com/problems/4sum/
 //striver sheet
 class Solution {
 public:
-    vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        int n = nums.size(); // Size of the input vector
+  // Broute force solution 
+vector<vector<int>> solve(vector<int>&arr,int n,int &target) {
+    
+   set<vector<int>>st;
 
-        // Brute force approach using sets to store unique quadruplets
-        set<vector<int>> st; // Set to store unique quadruplets
-        
-        // Iterate over all possible quadruplets
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                for (int k = j + 1; k < n; k++) {
-                    for (int l = k + 1; l < n; l++) {
-                        // Check if the quadruplet sums to the target
-                        if (nums[i] + nums[j] + nums[k] + nums[l] == target) {
-                            vector<int> temp = {nums[i], nums[j], nums[k], nums[l]};
-                            // Sort the quadruplet to ensure uniqueness
-                            sort(temp.begin(), temp.end());
-                            // Insert the quadruplet into the set
-                            st.insert(temp);
-                        }
-                    }
-                }
+    //checking all possible quadruplets:
+  for(int i=0; i<n; i++){
+    for(int j=i+1; j<n; j++){
+        for(int k=j+1; k<n; k++){
+            for(int m=k+1; k<n; k++){
+             if(arr[i]+arr[j]+arr[k]+arr[m]==target){
+                vector<int>temp={arr[i],arr[j],arr[k],arr[m]};
+                sort(temp.begin(),temp.end());
+                st.insert(temp);
+             }
             }
         }
+    }
+  }
+    vector<vector<int>> ans(st.begin(), st.end());
+    return ans;
+}
+
 
         // Better approach using hashset to avoid duplicates
         for (int i = 0; i < n; i++) {
