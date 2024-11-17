@@ -20,6 +20,21 @@ int findKRotation(vector<int> &arr) {
     return index; // Return the index of the minimum element, which indicates the number of rotations
 }
 
+
+// broute force 2
+int rotate(vector<int>&arr,int n,int target){
+   int count=1; int ans=INT_MAX;
+   for(int i=0; i<n; i++){
+    if(arr[i]+1==arr[i+1]){
+        count++;
+    }
+    else{
+        break;
+    }
+   }
+   return count;
+}
+
 // optimal-approach
 int findKRotation(vector<int> &arr) {
         int ans=INT_MAX;
