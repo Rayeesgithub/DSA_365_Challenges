@@ -1,7 +1,16 @@
 https://leetcode.com/problems/single-element-in-a-sorted-array/
 //striver sheet
 
-// broute force1
+// broute force 1
+   for(int i=1; i<n-1; i++){
+    if(arr[i-1]!=arr[i]  && arr[i]!=arr[i+1]){
+        ans=arr[i];
+    }
+   }
+   return ans;
+
+
+// broute force2
  int singleNonDuplicate(vector<int>& nums) {
         int xor1=0;
         for(int i=0; i<nums.size(); i++){
