@@ -41,7 +41,7 @@ int findPeak(vector<int>&arr,int n){
 
 
 
-// optimal Approach->this approach may fail interm some cases
+// optimal Approach->thhis approach mmay be some times fails so that's try another approach
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
