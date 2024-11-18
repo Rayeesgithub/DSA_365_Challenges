@@ -18,7 +18,30 @@ int findPeakElement(vector<int>& nums) {
     }
 
 
-// optimal Approach
+
+//approach2 ->broute force
+int findPeak(vector<int>&arr,int n){
+   int index=0;
+   if(arr[n-1]<arr[n]){
+    return n-1;
+   }
+   if(arr[0]>arr[1]){
+    return 0;
+   }
+   for(int i=0; i<n-1; i++){
+    if(arr[i]<arr[i+1]){
+        index=i;
+    }
+    else{
+        break;
+    }
+   }
+   return (index)+1;
+}
+
+
+
+// optimal Approach->this approach may fail interm some cases
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
