@@ -2,29 +2,19 @@ https://leetcode.com/problems/maximum-product-subarray/description/
 // striver sheet
 
 // Broute Force -1
-int maxProductSubArray(vector<int>& nums) {
-    int result = INT_MIN;
-    for(int i=0;i<nums.size()-1;i++) {
-        for(int j=i+1;j<nums.size();j++) {
-            int prod = 1;
-            for(int k=i;k<=j;k++) 
-                prod *= nums[k];
-            result = max(result,prod);    
-        }
+int maxProductSubArray(vector<int>& arr) {
+  int n=arr.size(); int maxi=INT_MIN;
+  for(int i=0; i<n; i++){
+    int pro=1;
+    for(int j=i+1; j<n; j++){
+    pro=pro*arr[j];
+    maxi=max(maxi,pro);
     }
-    return result;
+  }
+  return maxi;
 }
 
-// broute force -2
-int maxProductSubArray(vector<int>& nums) {
-    int result = INT_MIN;
-for(int i=0; i<n; i++){
-int pro=1;
-for(int j=i+1; j<n; j++){
-pro*=nums[j];
-result=max(result,pro);
-}
-}
+
 
 // optimal approach-1
 int maxProduct(vector<int>& nums) {
