@@ -1,3 +1,5 @@
+
+// Broute force-> Time-Complxity 0(N^2)
 #include<bits/stdc++.h>
 using namespace std;
 class Node{
@@ -73,3 +75,27 @@ int ans=height(root);
     cout<<"Tree is Not Balenced:";
   }
 }
+
+
+
+
+
+
+// optimal approach-> Time-Complxity 0(N)
+bool Balenced=true;
+int height(TreeNode* root){
+    if(root==NULL) return 0;
+
+    int lh=height(root->left);
+    int rh=height(root->right);
+    if(Balenced && abs(lh-rh)>1){
+       Balenced=false;
+    }
+    return max(lh,rh)+1;
+}
+    bool isBalanced(TreeNode* root) {
+       if(root==NULL) return true;
+       int ans=height(root);
+       return Balenced;
+    }
+
