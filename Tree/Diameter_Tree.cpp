@@ -1,4 +1,5 @@
- int height(Node* root){
+// Broute force-> Time-Com=0(N^2)
+int height(Node* root){
     if(root==NULL){
         return 0;
     }
@@ -27,3 +28,26 @@
 
     return res;
  }
+
+
+
+
+
+
+// optimal Approach Time-Com=0(N)
+int Dia=0;
+int height(TreeNode* root){
+    if(root==NULL){
+        return 0;
+    }
+    int lh=height(root->left);
+    int rh=height(root->right);
+    int currD=lh+rh;
+    Dia=max(Dia,currD);
+    return max(lh,rh)+1;
+}
+    int diameterOfBinaryTree(TreeNode* root) {
+       int ans= height(root);
+       return Dia;
+    }
+};
