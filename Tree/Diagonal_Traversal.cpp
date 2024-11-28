@@ -41,13 +41,14 @@ Node *buildTree(int data)
    while(!q.empty()){
        Node* temp=q.front();
        q.pop();
-       while(temp){
-           ans.push_back(temp->data);
-           if(temp->left){
-               q.push(temp->left);
-           }
-           temp=temp->right;
-       }
+      while (temp) { 
+    ans.push_back(temp->data); // Add current node to the result.
+    if (temp->left) {          // If the node has a left child, queue it for later.
+        q.push(temp->left);
+    }
+    temp = temp->right;        // Move to the next node on the same diagonal.
+}
+
      
    } 
    return ans;
