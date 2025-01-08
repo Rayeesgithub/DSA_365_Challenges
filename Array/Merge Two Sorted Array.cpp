@@ -19,7 +19,7 @@ void Merg(vector<int>&arr1,vector<int>&arr2){
   }
 
 // approach2-> Optimal Approach
-
+T.C-0(n) S.C->0(n)
 void MergeArr(vector<int>&arr1,vector<int>&arr2){
     int n=arr1.size(); int m=arr2.size();
     vector<int>ans;
