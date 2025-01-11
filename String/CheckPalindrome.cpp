@@ -1,24 +1,29 @@
 // striver-TCS
 #include<bits/stdc++.h>
 using namespace std;
-bool checkPalindrome(string st){
-    int n=st.size();
-    int i=0; int j=n-1;
-    while(i<=j){
-        if(st[i]!=st[j]){
-           return false;
-        }
-        i++; j--;
+bool checkPalindrome(string &s){
+bool ans=true;
+int i=0; int j=s.length()-1;
+while(i<=j){
+    if(s[i]!=s[j]){
+        ans=false;
     }
-    return true;
+    i++; j--;
+}
+return ans;
 }
 int main(){
-   string st;
-   cin>>st;
-    if(checkPalindrome(st)){
-        cout<<"This is palindrome";
+    int t;
+    cin>>t;
+    while(t--){
+    string s;
+    cout<<"enter the Any String :";
+    cin>>s;
+    if(checkPalindrome(s)){
+        cout<<"Palindrome"<<endl;
     }
     else{
-        cout<<"This is Not Palindrome";
+        cout<<"this is Not Palindrome"<<endl;
+    }
     }
 }
