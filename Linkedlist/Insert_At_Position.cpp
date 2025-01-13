@@ -1,55 +1,48 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 class Node {
-        public:
-        int data;
-        Node* next;
+public:
+    int data;
+    Node* next;
 
-        Node() {
-                this->data = 0;
-                this->next = NULL;
-        }
-         Node(int data) {
-                this->data = data;
-                 this->next = NULL;
-         }
+    Node() {
+        this->data = 0;
+        this->next = NULL;
+    }
+
+    Node(int data) {
+        this->data = data;
+        this->next = NULL;
+    }
 };
 
-//I want to insert a node right at the head of Linked List
-void insertAtHead(Node* &head, Node* &tail, int data) {
-        //check for Empty LL
-        if(head == NULL) {
-                Node* newNode = new Node(data);
-                head = newNode;
-                tail = newNode;
-        }
-        else {
-                //step1:
-                Node* newNode = new Node(data);
-                //step2:
-                newNode -> next = head;
-                //step3:
-                head = newNode;
-        }
-
-
-}
-//I want to insert a node right at the end of LINKED LIST
-void insertAtTail(Node* &head,Node* &tail, int data) {
-        if(head == NULL) {
-                Node* newNode = new Node(data);
-                head = newNode;
-                tail = newNode;
-                return;
-        }
-        //step1: creatae a node
+// Function to insert a node right at the head of Linked List
+void insertAtHead(Node*& head, Node*& tail, int data) {
+    if (head == NULL) {
         Node* newNode = new Node(data);
-        //step2: connect woth tail ndoe
-        tail->next = newNode;
-        //step3: update tail;
+        head = newNode;
         tail = newNode;
+    } else {
+        Node* newNode = new Node(data);
+        newNode->next = head;
+        head = newNode;
+    }
 }
+
+// Function to insert a node right at the end of Linked List
+void insertAtTail(Node*& head, Node*& tail, int data) {
+    if (head == NULL) {
+        Node* newNode = new Node(data);
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+    Node* newNode = new Node(data);
+    tail->next = newNode;
+    tail = newNode;
+}
+
 void print(Node* head) {
 
         Node* temp = head;
@@ -57,6 +50,7 @@ void print(Node* head) {
                 cout << temp->data << " ";
                 temp = temp->next;
         }
+        cout<<endl;
 }
 
 int findLength(Node* &head ) {
@@ -111,25 +105,45 @@ void insertAtPosition(int data, int position, Node* &head, Node* &tail) {
 int main() {
 
         Node* head = NULL;
-        Node* tail = NULL;
-        insertAtHead(head, tail,20);
-        insertAtHead(head, tail,50);
-        insertAtHead(head, tail,60);
-        insertAtHead(head,tail, 90);
-        insertAtTail(head, tail, 77);
-        
+    Node* tail = NULL;
 
-        print(head);
-        cout << endl;
-        // cout << "head: " << head -> data << endl;
-        // cout << "tail: " << tail->data << endl;
+    int choice, data, position;
+    while (true) {
+        cout << "1. Insert at Head\n";
+        cout << "2. Insert at Tail\n";
+        cout << "3. Insert at Position\n";
+        cout << "4. Print List\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-        insertAtPosition(101, 3, head, tail);
-        cout<< "Printing after insert at position call" << endl;
-        print(head);
-        cout << endl;
-        cout << "head: " << head -> data << endl;
-        cout << "tail: " << tail->data << endl;
+        switch (choice) {
+            case 1:
+                cout << "Enter data to insert at head: ";
+                cin >> data;
+                insertAtHead(head, tail, data);
+                break;
+            case 2:
+                cout << "Enter data to insert at tail: ";
+                cin >> data;
+                insertAtTail(head, tail, data);
+                break;
+            case 3:
+                cout << "Enter position to insert: ";
+                cin >> position;
+                cout << "Enter data to insert: ";
+                cin >> data;
+                insertAtPosition(data, position, head, tail);
+                break;
+            case 4:
+                print(head);
+                break;
+            case 5:
+                return 0;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    }
 
-        return 0;
+    return 0;
 }
