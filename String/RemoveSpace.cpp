@@ -1,21 +1,26 @@
 #include<bits/stdc++.h>
 using namespace std;
-void removeSpace(string &st){
+string RemoveSpace(string &st){
     string ans;
-    for(int i=0; i<st.length();i++){
-       if(st[i]==' '){
-        continue;
-       }
-       else{
-        ans.push_back(st[i]);
-       }
+    for(int i=0; i<st.length(); i++){
+        if(st[i]==' '){
+            continue;
+        }
+        else{
+            ans+=st[i];
+        }
     }
-    for(int i=0; i<ans.length(); i++){
-        cout<<ans[i];
-    }
+    return ans;
 }
 int main(){
-    string st="How are you doing";
-    removeSpace(st);
-   
+    int t;
+    cin>>t;
+    cin.ignore();
+    while(t--){
+        string st;
+        cout<<"enter the string:";
+       getline(cin,st);
+        string ans=RemoveSpace(st);
+        cout<<"After remove space :"<<ans<<endl;
+    }
 }
