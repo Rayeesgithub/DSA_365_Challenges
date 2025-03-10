@@ -1,4 +1,26 @@
 //striver sheet NQT
+
+vector<bool>visited(arr.size(),false);
+  for(int i=0; i<arr.size();i++){
+    if(visited[i]==true){
+        continue;
+    }
+    int count=0;
+   for(int j=0; j<arr.size();j++){
+    if(arr[i]==arr[j]){
+        count++;
+        visited[j]=true;
+    }
+   }
+   if(count==1){
+    cout<<arr[i]<<" ";
+   }
+  }
+
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
