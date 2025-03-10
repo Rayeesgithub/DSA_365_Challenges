@@ -1,7 +1,24 @@
 //https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 // striver sheet
 
+int main() {
+    vector<int> arr = {5, 3, 2, 3, 5, 1, 4, 2};
 
+    // Use map instead of unordered_map
+    map<int, int> mp;
+
+    // Count occurrences
+    for (int i = 0; i < arr.size(); i++) {
+        mp[arr[i]]++;
+    }
+
+    // Print unique elements in sorted order
+    for (auto it : mp) {
+        cout << it.first << " ";
+    }
+
+    return 0;
+}
 
 
 
@@ -41,27 +58,6 @@ int main() {
     
     return 0;
 }
-
-
-// Time complexity: O(n*log(n))+O(n) && Space Complexity: O(n) 
-int removeDuplicates(int arr[], int n) {
-// sets only store unique elements.
-    set<int> set;
- // Iterate through the array and insert each element into the set and Duplicate elements will be ignored by the set.
-    for (int i = 0; i < n; i++) {
-        set.insert(arr[i]);
-    }
-// Get the size of the set, which represents the number of unique elements
-    int k = set.size();
-  int j = 0; // Index to store elements back into the array
-
-    // Iterate through the set and store each unique element back into the array
-    for (int x : set) {
-        arr[j++] = x;
-    }  
-  return k;  // Return the number of unique elements
-}
-
 //optimal approach->using two pointer      Time Complexity: O(N) && Space Complexity: O(1)
 int removeDuplicates(int arr[], int n) {
     // Initialize a variable i to track the position of the last unique element
