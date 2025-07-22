@@ -1,5 +1,11 @@
 //https://leetcode.com/problems/rotate-array/
 // striver sheet
+
+Input: arr[] = [1, 2, 3, 4, 5, 6], k = 2
+Output: [5, 6, 1, 2, 3, 4]
+Explanation: Rotating the array 2 times in clockwise gives the array [5, 6, 1, 2, 3, 4].
+    
+    
 void rotate(vector<int>& nums, int k) {
     int n = nums.size();
     vector<int> temp(n); // Create a temporary vector to store the rotated elements
