@@ -1,6 +1,19 @@
 // GFG->Union of Two Sorted Arrays
 // STRIVER SHEET
 
+Input:
+n = 10,m = 7.
+arr1[] = {1,2,3,4,5,6,7,8,9,10}
+arr2[] = {2,3,4,4,5,11,12}
+Output: {1,2,3,4,5,6,7,8,9,10,11,12}
+Explanation: 
+Common Elements in arr1 and arr2  are:  2,3,4,5
+Distnict Elements in arr1 are : 1,6,7,8,9,10
+Distnict Elemennts in arr2 are : 11,12
+Union of arr1 and arr2 is {1,2,3,4,5,6,7,8,9,10,11,12} 
+
+  
+
 // 1st approach-> using map fxn   Time Compleixty : O( (m+n)log(m+n) ) && Space Complexity : O(m+n)
 vector < int > FindUnion(int arr1[], int arr2[], int n, int m) {
   map < int, int > freq;
