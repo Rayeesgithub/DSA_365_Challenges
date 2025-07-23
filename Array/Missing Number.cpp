@@ -1,6 +1,10 @@
 //https://leetcode.com/problems/missing-number/
 //striver sheet
 
+Input: nums = [9,6,4,2,3,5,7,0,1]
+
+Output: 8
+
 //broute force
 int missingNumber(vector<int>& nums) {
          sort(nums.begin(), nums.end());
