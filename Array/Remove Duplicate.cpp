@@ -1,5 +1,27 @@
 //https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 // striver sheet
+//approach-1
+int removeDuplicates(vector<int>& nums) {
+    // Step 1: Create a set to store only unique elements
+    set<int> st;
+
+    // Step 2: Insert each element of nums into the set
+    // Set automatically removes duplicates and keeps the elements sorted
+    for (int i = 0; i < nums.size(); i++) {
+        st.insert(nums[i]);  // e.g., nums = [1, 1, 2, 2, 3] => st = {1, 2, 3}
+    }
+
+    // Step 3: Replace the beginning of nums with the unique elements from the set
+    int i = 0;
+    for (auto it : st) {
+        nums[i++] = it;  // nums = [1, 2, 3, ?, ?, ...]
+    }
+
+    // Step 4: Return the number of unique elements
+    return st.size();  // In this example, returns 3
+}
+
+
 
 int main() {
     vector<int> arr = {5, 3, 2, 3, 5, 1, 4, 2};
@@ -23,73 +45,27 @@ int main() {
 
 
 //print
-#include<bits/stdc++.h>
-using namespace std;
-int main() {
-   int n=7;
-   int arr[n]={1,1,2,2,2,3,3};
-   set<int>st;
-   for(int i=0; i<n; i++){
-    st.insert(arr[i]);
-   }
-   for(auto it:st){
-    cout<<it<<" ";
-   }
-}
+
 
 // second approach
-#include<bits/stdc++.h>
-using namespace std;
-int main() {
-    int n = 7;
-    int arr[n] = {1, 1, 2, 2, 2, 3, 3};
-    
-    int i = 0;
-    for (int j = 1; j < n; j++) {
-        if (arr[i] != arr[j]) {
-            i++; // Move the pointer to the next position
-            arr[i] = arr[j]; // Assign the non-duplicate element to the correct position
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        // If the array is empty, return 0
+        if (nums.size() == 0) return 0;
+
+        int i = 0;  // Pointer to place unique elements
+
+        // Start loop from the second element
+        for (int j = 1; j < nums.size(); j++) {
+            // If the current element is different from the last unique one
+            if (nums[j] != nums[i]) {
+                i++;              // Move the unique index forward
+                nums[i] = nums[j]; // Copy current unique value to the correct position
+            }
         }
+
+        // The number of unique elements is (i + 1)
+        return i + 1;
     }
-    // Print the unique elements
-    for (int k = 0; k <= i; k++) {
-        cout << arr[k] << " ";
-    }
-    
-    return 0;
-}
-//optimal approach->using two pointer      Time Complexity: O(N) && Space Complexity: O(1)
-int removeDuplicates(int arr[], int n) {
-    // Initialize a variable i to track the position of the last unique element
-    int i = 0;
-for (int j = 1; j < n; j++) {
-        // If the current element is different from the last unique element
-        if (arr[i] != arr[j]) {
-            // Move the position of the last unique element forward
-            i++;
-            // Update the array to include the new unique element
-            arr[i] = arr[j];
-        }
-    }
-
-    // Return the count of unique elements
-    // i is the index of the last unique element, so the count is i + 1
-    return i + 1;
-}
-
-int main() {
-    int arr[] = {12, 35, 1, 10, 34, 1};
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    int k = removeDuplicates(arr, n);
-
-    cout << "The array after removing duplicates: ";
-    for (int i = 0; i < k; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-
-    cout << "Number of unique elements: " << k << endl;
-
-    return 0;
-}
+};
