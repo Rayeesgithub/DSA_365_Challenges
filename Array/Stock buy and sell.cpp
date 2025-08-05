@@ -15,19 +15,17 @@
 
    
     // optimal approach
-      int minPrice=INT_MAX;
-       int maxprofit=0; 
-   for(int i=0; i<prices.size();i++){
-        // If the current price is less than minPrice, update minPrice
-        if(prices[i]<minPrice) minPrice=prices[i];
-        else{  // Calculate the profit if the stock was bought at minPrice and sold at current price
-          int  profit=prices[i]-minPrice;
-            if(profit>maxprofit)  // If the calculated profit is greater than maxProfit, update maxProfit
-              maxprofit=profit;
-        }
-      }  
-      return maxprofit;
+       int maxProfit(vector<int>& prices) {
+    int n=prices.size();     int miniElement=INT_MAX;
+        int maxiProfit=INT_MIN;
+        for(int i=0; i<n; i++){
+         miniElement=min(miniElement,prices[i]);
+         maxiProfit=max(maxiProfit,prices[i]-miniElement);
+
     }
+     return maxiProfit;   
+    }
+
 
 
 //  New Appraoch
