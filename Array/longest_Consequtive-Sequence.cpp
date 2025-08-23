@@ -1,26 +1,63 @@
 //https://leetcode.com/problems/longest-consecutive-sequence/
 // striver sheet
 
-int longestConsecutive(vector<int>& nums) {
-        if (nums.empty()) return 0; // If the array is empty, return 0
+// broute force
 
-        sort(nums.begin(), nums.end()); // Sort the array
 
-        int longestStreak = 1;
-        int currentStreak = 1;
+#include <bits/stdc++.h>
+using namespace std;
 
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[i] != nums[i - 1]) { // Ignore duplicates
-                if (nums[i] == nums[i - 1] + 1) {
-                    // Increment the current streak if the current element is consecutive
-                    currentStreak++;
-                } else {
-                    // Update the longest streak and reset current streak
-                    longestStreak = max(longestStreak, currentStreak);
-                    currentStreak = 1;
-                }
-            }
-        }
-        // The final comparison for the last streak
-        return max(longestStreak, currentStreak);
+bool linearSearch(vector<int>&a, int num) {
+    int n = a.size(); //size of array
+    for (int i = 0; i < n; i++) {
+        if (a[i] == num)
+            return true;
     }
+    return false;
+}
+int longestSuccessiveElements(vector<int>&a) {
+    int n = a.size(); //size of array
+    int longest = 1;
+    //pick a element and search for its
+    //consecutive numbers:
+    for (int i = 0; i < n; i++) {
+        int x = a[i];
+        int cnt = 1;
+        //search for consecutive numbers
+        //using linear search:
+        while (linearSearch(a, x + 1) == true) {
+            x += 1;
+            cnt += 1;
+        }
+
+        longest = max(longest, cnt);
+    }
+    return longest;
+}
+
+
+
+
+
+//optimize solution
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+       int n=nums.size();
+       if(n==0) return 0;
+        int count=0; int largest=1; int lastSmall=INT_MIN;
+        for(int i=0; i<n; i++){
+            if(nums[i]-1==lastSmall){
+            count++;
+            lastSmall=nums[i];
+            }
+            else if(nums[i]!=lastSmall){
+                count=1;
+                lastSmall=nums[i];
+            }
+            largest=max(count,largest);
+        }
+        return largest;
+    }
+};
