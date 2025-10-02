@@ -3,28 +3,27 @@ https://leetcode.com/problems/4sum/
 class Solution {
 public:
   // Broute force solution 
-vector<vector<int>> solve(vector<int>&arr,int n,int &target) {
-    
-   set<vector<int>>st;
-
-    //checking all possible quadruplets:
-  for(int i=0; i<n; i++){
-    for(int j=i+1; j<n; j++){
-        for(int k=j+1; k<n; k++){
-            for(int m=k+1; k<n; k++){
-             if(arr[i]+arr[j]+arr[k]+arr[m]==target){
-                vector<int>temp={arr[i],arr[j],arr[k],arr[m]};
-                sort(temp.begin(),temp.end());
-                st.insert(temp);
-             }
+vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>>ans;
+        int n=nums.size();
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<n; j++){
+           for(int k=j+1; k<n; k++){
+            for(int m=k+1; m<n; m++){
+                long long  sum= 1LL*nums[i]+nums[j]+nums[k]+nums[m];
+                if(sum==target){
+                 vector<int>temp={nums[i],nums[j],nums[k],nums[m]};
+                   sort(temp.begin(),temp.end());
+                 if(find(ans.begin(),ans.end(),temp)==ans.end()){
+                 ans.push_back(temp);   
+                 }
+                }
+            }
+           }
             }
         }
+        return ans;
     }
-  }
-    vector<vector<int>> ans(st.begin(), st.end());
-    return ans;
-}
-
 
         // Better approach using hashset to avoid duplicates
    vector<vector<int>> solve(vector<int>&arr,int n,int &target) {
@@ -51,7 +50,11 @@ vector<vector<int>> solve(vector<int>&arr,int n,int &target) {
         // Convert the set to a vector of vectors
         vector<vector<int>> ans(st.begin(), st.end());
 
-        // Optimal approach using two pointers
+       
+
+
+
+// Optimal approach using two pointers
         sort(nums.begin(), nums.end()); // Sort the input vector
         
         // Iterate over the array
