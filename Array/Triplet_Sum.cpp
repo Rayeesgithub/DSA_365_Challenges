@@ -49,6 +49,11 @@ public:
         return ans;
     }
 };
+   What it does
+find(ans.begin(), ans.end(), triplet) → searches in the ans vector (which stores triplets we already found) for the current triplet.
+If it doesn’t find the triplet, then find() will return ans.end().
+So == ans.end() means “triplet is not already in ans”.
+If triplet is new, we push it into ans using ans.push_back(triplet).
 
 
         
