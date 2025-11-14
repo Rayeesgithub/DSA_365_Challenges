@@ -1,5 +1,18 @@
 https://leetcode.com/problems/rotate-image/
+Input: [[1,2,3],[4,5,6],[7,8,9]]
 
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+    
+🔁 DRY RUN (step-by-step)
+    ➤ Iteration 1: i = 0
+   Row = 1 2 3
+    j = 0 , rotated[0][3-1-0] = rotated[0][2] = arr[0][0] = 1,
+    j = 1,  rotated[1][2] = arr[0][1] = 2,
+    j = 2 , rotated[2][2] = arr[0][2] = 3,
+    0 0 1
+    0 0 2
+    0 0 3
+so on .....
 // broute force
 #include<bits/stdc++.h>
 using namespace std;
