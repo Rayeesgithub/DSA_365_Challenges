@@ -1,0 +1,102 @@
+Input : N=7,arr[]={3,2,8,5,1,4,23}
+Output : {1,2,3,4,5,8,23}
+Explanation : Given array is sorted in non-decreasing order.
+
+
+  #include<bits/stdc++.h>
+using namespace std;
+
+// Function to merge two sorted halves of the array
+void merge(vector<int>& arr, int s, int e) {
+
+    int mid = (s + e) / 2;  // middle point of array
+
+    // length of left half: from s to mid
+    int len1 = mid - s + 1;
+
+    // length of right half: from mid+1 to e
+    int len2 = e - mid;
+
+    // create dynamic arrays to store the left and right halves
+    int *left = new int[len1];
+    int *right = new int[len2];
+
+    // copy elements into left array
+    int k = s;   // starting index of left half in original array
+    for (int i = 0; i < len1; i++) {
+        left[i] = arr[k];
+        k++;
+    }
+
+    // copy elements into right array
+    k = mid + 1;  // starting index of right half
+    for (int i = 0; i < len2; i++) {
+        right[i] = arr[k++];
+    }
+
+    // Now merge both sorted arrays into the original array
+
+    int leftIndex = 0;   // pointer for left array
+    int rightIndex = 0;  // pointer for right array
+    int mainIndex = s;   // pointer for original array
+
+    // Compare elements of both arrays and place the smaller one
+    while (leftIndex < len1 && rightIndex < len2) {
+        if (left[leftIndex] < right[rightIndex]) {
+            arr[mainIndex++] = left[leftIndex++];
+        } else {
+            arr[mainIndex++] = right[rightIndex++];
+        }
+    }
+
+    // If any elements are left(remaining)  in left array, copy them
+    while (leftIndex < len1) {
+        arr[mainIndex++] = left[leftIndex++];
+    }
+
+    // If any elements are left in right array, copy them
+    while (rightIndex < len2) {
+        arr[mainIndex++] = right[rightIndex++];
+    }
+
+    // free dynamic memory (good practice)
+    delete[] left;
+    delete[] right;
+}
+
+// Recursive Merge Sort function
+void mergeSort(vector<int>& arr, int s, int e) {
+
+    // base case: single element is already sorted
+    if (s >= e) {
+        return;
+    }
+
+    // find mid
+    int mid = (s + e) / 2;
+
+    // recursively sort left half
+    mergeSort(arr, s, mid);
+
+    // recursively sort right half
+    mergeSort(arr, mid + 1, e);
+
+    // merge both sorted halves
+    merge(arr, s, e);
+}
+
+int main() {
+
+    vector<int> arr = {7, 3, 2, 16, 24, 4, 11, 9};
+
+    int n = arr.size();
+    int s = 0;
+    int e = n - 1;
+
+    mergeSort(arr, s, e); // apply merge sort
+
+    // print sorted array
+    for (int i = 0; i < arr.size(); i++) {
+        cout << arr[i] << " ";
+    }
+}
