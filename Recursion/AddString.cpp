@@ -1,3 +1,9 @@
+Input: num1 = "11", num2 = "123"
+Output: "134"
+
+
+
+
 What is -'0' ?
   num1[p1] - '0' ->  It converts the character digit into an integer.
   char c = '5';
