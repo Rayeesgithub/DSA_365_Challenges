@@ -3,6 +3,20 @@ Output : {1,2,3,4,5,8,23}
 Explanation : Given array is sorted in non-decreasing order.
 
 
+
+  🔹 1. BREAK (Divide the array)
+  Split the array into 2 halves again and again
+2. Recursion will sort both halves automatically.
+
+Let recursion sort the left half
+
+Let recursion sort the right half
+(3) create length llen2, len2 with dynamic array
+(4)Merge the two sorted halves
+
+
+
+
   #include<bits/stdc++.h>
 using namespace std;
 
