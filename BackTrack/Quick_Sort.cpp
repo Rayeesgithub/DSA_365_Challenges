@@ -99,3 +99,43 @@ int main() {
         cout << arr[i] << " ";
     }
 }
+
+
+
+// 2nd Appraoch
+void quickSort(int a[], int start, int end)
+{
+    // Base condition: if array part has 0 or 1 element → already sorted
+    if(start >= end) return;
+
+    // Taking pivot at the end index
+    int pivot = end;
+
+    // i will mark the boundary of elements < pivot
+    int i = start - 1;
+
+    // j will scan the array from start to pivot-1
+    int j = start;
+
+    // Partition logic: move all elements < pivot to the left side
+    while(j < pivot){
+        
+        // If current element is smaller than pivot element
+        if(a[j] < a[pivot]){
+            ++i;                          // Move i ahead
+            swap(a[i], a[j]);             // Put smaller element to left side
+        }
+        ++j;                              // Move j forward
+    }
+
+    // Now place pivot at its correct sorted position: i+1
+    ++i;
+    swap(a[i], a[pivot]);
+
+    // Now pivot is fixed at position i
+    // Recursively sort left side (elements < pivot)
+    quickSort(a, start, i - 1);
+
+    // Recursively sort right side (elements > pivot)
+    quickSort(a, i + 1, end);
+}
