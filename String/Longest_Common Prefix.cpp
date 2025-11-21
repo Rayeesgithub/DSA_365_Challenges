@@ -1,5 +1,7 @@
 //https://leetcode.com/problems/longest-common-prefix/description/
-//striver sheet
+Example 1:
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
 
 string longestCommonPrefix(vector<string>& strs) {
 
