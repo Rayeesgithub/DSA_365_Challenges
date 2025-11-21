@@ -46,11 +46,24 @@ toupper(ch)
 
 13. Check Character Type
 isalpha(ch)
-isdigit(ch)
-isalnum(ch)
-islower(ch)
-isupper(ch)
-isspace(ch)
+📌 What is isalpha() ?
+
+isalpha(ch) is a function from <cctype> library used to check if a character is a letter (A–Z or a–z).
+
+| Character               | `isalpha()` result |
+| ----------------------- | ------------------ |
+| `'A'` `'g'` `'Z'`       | ✅ true             |
+| `'1'` `'-'` `'@'` `' '` | ❌ false            |
+
+
+| Function        | One-sentence meaning                                                                    |
+| --------------- | --------------------------------------------------------------------------------------- |
+| **isdigit(ch)** | Checks whether the character `ch` is a numeric digit (0–9).                             |
+| **isalnum(ch)** | Checks whether the character `ch` is either a letter or a digit (A–Z, a–z, 0–9).        |
+| **islower(ch)** | Checks whether the character `ch` is a lowercase letter (a–z).                          |
+| **isupper(ch)** | Checks whether the character `ch` is an uppercase letter (A–Z).                         |
+| **isspace(ch)** | Checks whether the character `ch` is a whitespace character (space, tab, newline etc.). |
+
 14. String to Number
 stoi(s)
 stoll(s)
