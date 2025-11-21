@@ -1,22 +1,33 @@
 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/description/
-// love Babbar
+
+Input: s = "abbaca"
+Output: "ca"
+Explanation: For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only possible move.
+    The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is "ca".
 
 string removeDuplicates(string s) {
-    // Initialize an empty string to store the result
-    string ans = "";
+        string ans = ""; // This will store result after removing duplicates
 
-    // Iterate through each character in the input string `s`
-    for (int i = 0; i < s.length(); i++) {
-        // Check if `ans` is not empty and the last character of `ans` is the same as the current character in `s`
-        if (ans.length() > 0 && ans[ans.length() - 1] == s[i]) {
-            // If the condition is true, remove the last character from `ans` (pop it off)
-            ans.pop_back();
-        } else {
-            // If the condition is false, add the current character from `s` to `ans` (push it on)
-            ans.push_back(s[i]);
+        // Loop through each character of input string
+        for(int i = 0; i < s.size(); i++) {
+
+            // Check if ans already has some characters
+            if(ans.size() > 0) {
+
+                // Compare current char of s with last char of ans
+                // If both are same → remove last char (pop) → duplicate removed
+                if(ans[ans.size() - 1] == s[i]) {
+                    ans.pop_back(); // remove the duplicate character
+                }
+                else {
+                    ans.push_back(s[i]); // add current character to ans
+                }
+            }
+            else {
+                // If ans is empty, directly push character
+                ans.push_back(s[i]);
+            }
         }
-    }
 
-    // Return the modified string `ans` after removing adjacent duplicates
-    return ans;
+        return ans; // return final string after removing duplicates
 }
