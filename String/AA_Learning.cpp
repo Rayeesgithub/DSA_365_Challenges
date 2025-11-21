@@ -36,8 +36,10 @@ sort(s.begin(), s.end());
 
 🔹 10. Reverse String
 reverse(s.begin(), s.end());
+
 🔹 11. Remove Spaces / Characters
-s.erase(remove(s.begin(), s.end(), ' '), s.end());
+s.erase(KONposition,Kitnalength);
+
 🔹 12. Convert Case
 tolower(ch)
 toupper(ch)
