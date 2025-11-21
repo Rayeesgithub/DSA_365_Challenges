@@ -6,6 +6,16 @@ Input: s = "a-bC-dEf-ghIj"
 Output: "j-Ih-gfE-dCba"
 
 
+📌 What is isalpha() ?
+
+isalpha(ch) is a function from <cctype> library used to check if a character is a letter (A–Z or a–z).
+
+| Character               | `isalpha()` result |
+| ----------------------- | ------------------ |
+| `'A'` `'g'` `'Z'`       | ✅ true             |
+| `'1'` `'-'` `'@'` `' '` | ❌ false            |
+
+  
   Time Complexity=O(N)  &&  Space Complexity=O(1)
 string reverseOnlyLetters(string s) { 
     int i = 0; 
