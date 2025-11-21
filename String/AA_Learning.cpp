@@ -1,3 +1,8 @@
+✅Input
+String str;
+cin >> str ///Taking input in string
+getline (cin, Str); // To read spaces also
+
 ✅ Frequently Used STL for String & Character
 🔹 1. Length / Size
   s.length()
