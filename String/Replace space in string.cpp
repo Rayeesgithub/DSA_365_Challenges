@@ -1,4 +1,7 @@
 // love babbar
+
+i/p→ My name is Babbar
+olp=>  My@name@is@Babbar
 #include<iostream>
 using namespace std;
 string Replace(string s){
