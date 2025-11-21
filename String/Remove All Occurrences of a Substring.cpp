@@ -1,29 +1,44 @@
 https://leetcode.com/problems/remove-all-occurrences-of-a-substring/description/
-// love Babbar
 
-// broute force
- string removeOccurrences(string s, string part) {
-            string result = "";
+Input: s = "daabcbaabcbc", part = "abc"
+Output: "dab"
 
-    for (char c : s) {
-        result += c;  // Push current character to result
+// approach1
+string removeOccurrences(string s, string part) {
+        // Find the first occurrence (starting index) of substring 'part'
+        int pos = s.find(part);
 
-        // Check if the end of `result` contains `part`
-        if (result.size() >= part.size() && 
-            result.substr(result.size() - part.size()) == part) {
-            // Remove the occurrence of `part`
-            result.erase(result.size() - part.size());
+        // Loop while 'part' exists inside string s
+       // Keep looping as long as the substring is found inside the main string.
+     //  Loop will stop when no more "abc" found → pos becomes string::npos.  return substring not found
+        while(pos != string::npos) { 
+
+            // Remove substring 'part' from string s at position 'pos'
+            // erase(starting_index, length_of_substring)
+            s.erase(pos, part.size());
+
+            // Search again for next occurrence after removal
+            pos = s.find(part);
         }
-    }
 
-    return result;
-    }
+        // Return modified string
+        return s;
+}
 
 
 // optimal approach
 string removeOccurrences(string s, string part) {
-    while(s.length() != 0 && s.find(part) < s.length()) { //  // Continue looping while `s` is not empty and `part` is found in `s`
-        s.erase(s.find(part), part.length());   // Remove the substring `part` from `s` starting at `index`
+
+    // Continue while:
+    // 1️⃣ The string still has characters
+    // 2️⃣ The substring 'part' is still found inside `s`
+    while(s.length() != 0 && s.find(part) < s.length()) {
+
+        // Erase substring from where it is found
+        s.erase(s.find(part), part.length());
     }
+
+    // Return final processed string
     return s; 
 }
+
