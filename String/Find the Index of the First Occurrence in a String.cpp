@@ -1,19 +1,47 @@
 https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/
 
-//striver sheet
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+Example 2:
 
+Input: haystack = "leetcode", needle = "leeto"
+Output: -1
+
+    
+// Approach-1: Using loop logic with find()
+int strStr(string haystack, string needle) {
+    
+    // Loop every index where a substring can start
+    for(int i = 0; i + needle.size() <= haystack.size(); i++) {
+
+        // Check if substring from index i matches needle
+        if(haystack.substr(i, needle.size()) == needle) {
+            return i;  // First match found → return index
+        }
+    }
+    
+    return -1; // No match found
+
+//2nd appraoch
+ // Approach-2: Using built-in find() function
+int strStr(string haystack, string needle) {
+    int index = haystack.find(needle);  // Find first occurrence
+    
+    if(index != string::npos) {  // If substring found
+        return index; 
+    }
+    
+    return -1; // If substring not found
+}
+
+
+// appraoch3 
 int strStr(string haystack, string needle) {
     // Initialize the index variable to -1, which will store the first occurrence of the needle
     int index = -1;
-
-    // Get the lengths of the haystack and needle strings
-    int n = haystack.length();
-    int m = needle.length();
-
-    // If the needle is an empty string, return 0 as per problem definition
-    if (m == 0) return 0;
-
-    // Loop through the haystack up to the point where there's enough remaining length to match the needle
+ int n = haystack.length(); int m = needle.length();
     for (int i = 0; i <= n - m; i++) {
         // Extract the substring from haystack starting at index i with length m
         // Compare it with the needle
