@@ -1,71 +1,100 @@
 //https://leetcode.com/problems/reverse-words-in-a-string/description/
 // striver sheet
+Example 1:
 
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+Example 2:
+
+Input: s = "  hello world  "
+Output: "world hello"
 broute force
 
- string reverseWords(string s) {
-         stack<string> st;  // Stack to hold words
-    string str = "";   // Temporary string to build each word
-    
-    // Iterate through each character in the string
-    for (int i = 0; i < s.length(); i++) {
-        if   (s[i] == ' ') { // If a space is encountered, a word is completed
-          if (!str.empty()) { // Push only non-empty words to the stack
-                st.push(str);
-                str = ""; // Reset the string to start a new word
+string reverseWords(string s) {
+    stack<string> st;
+    string word = "";
+
+    // Step 1: Extract words and push to stack
+    for(int i = 0; i < s.size(); i++) {
+        if(s[i] != ' ') {
+            word += s[i];  // build current word
+        } 
+        else {
+            if(word != "") { // if a word is formed
+                st.push(word);
+                word = "";   // reset for next word
             }
-        } else {
-            str += s[i]; // Append the current character to the word
         }
     }
 
-    // Push the last word onto the stack if it exists
-    if (!str.empty()) {
-        st.push(str);
+    // Push last word (if available)
+    if(word != "") st.push(word);
+
+    // Step 2: Pop from stack and form result
+    string res = "";
+    while(!st.empty()) {
+        res += st.top();
+        st.pop();
+        if(!st.empty()) res += " "; // add space between words
     }
 
-    string ans = ""; // String to store the result
+    return res;
+}
 
-    // Pop words from the stack and form the reversed words string
-    while (!st.empty()) {
-        ans += st.top(); // Append the top word from the stack to the result
-        st.pop(); // Remove the top word from the stack
-        if (!st.empty()) { // Add a space if there are more words to add
-            ans += " ";
+
+
+📌 How it works behind the scene?
+Input	" i love you "
+Extract words	i, love, you
+Stack (top → bottom)	you → love → i
+Pop + Build	"you love i"
+
+
+
+ 
+
+class Solution {
+public:
+    string reverseWords(string s) {
+
+        int left = 0; 
+        int right = s.size() - 1;
+
+        string temp = "";  // will store a single word while scanning
+        string ans = "";   // final reversed result
+
+        // Step 1 → Traverse the string from left to right
+        while (left <= right) {
+
+            char ch = s[left];  // take current character
+
+            // If character is NOT space → build the current word
+            if (ch != ' ') {
+                temp += ch;
+            }
+            // If space is found AND temp has a word → add it into ans (reversed order)
+            else if (ch == ' ' && !temp.empty()) {
+
+                // If ans already has words → insert current word before ans
+                // so that order becomes reversed
+                if (!ans.empty()) 
+                    ans = temp + " " + ans;
+                else 
+                    ans = temp;  // First word goes directly
+
+                temp = ""; // reset for next word
+            }
+            left++;
         }
-    }
-    return ans;
-        
-    }
 
-
-//optimal approach
-  string reverseWords(string s) {
-          int left = 0; // Initialize left pointer
-    int right = s.length() - 1; // Initialize right pointer
-    
-    string temp = ""; // Temporary string to build words
-    string ans = ""; // Final result string
-    
-    // Iterate the string and keep on adding to form a word
-    // If an empty space is encountered then add the current word to the result
-    while (left <= right) {
-        char ch = s[left];
-        if (ch != ' ') {
-            temp += ch; // Build the current word
-        } else if (ch == ' ' && !temp.empty()) {
-            if (!ans.empty()) ans = temp + " " + ans; // Add the current word to the front of the result
-            else ans = temp; // For the first word, directly assign to ans
-            temp = ""; // Reset the temp string for the next word
+        // Step 2 → For the last stored word (if not followed by space)
+        if (!temp.empty()) {
+            if (!ans.empty()) 
+                ans = temp + " " + ans;
+            else 
+                ans = temp;
         }
-        left++;
+
+        return ans;
     }
-    
-    // If not an empty string then add to the result (Last word is added)
-    if (!temp.empty()) {
-        if (!ans.empty()) ans = temp + " " + ans; // Add the last word to the front of the result
-        else ans = temp; // For the first word, directly assign to ans
-    }
-    
-    return ans;    
-    }
+};
