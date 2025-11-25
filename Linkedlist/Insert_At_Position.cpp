@@ -53,54 +53,68 @@ void print(Node* head) {
         cout<<endl;
 }
 
-int findLength(Node* &head ) {
-        int len = 0;
-        Node* temp = head;
-        while(temp != NULL) {
-                temp = temp->next;
-                len++;
-        }
-        return len;
+// Function to find total number of nodes in Linked List
+int findLength(Node* &head) {
+    int len = 0;              // Length counter
+    Node* temp = head;        // Pointer to traverse list
+
+    while(temp != NULL) {     // Loop until end of list
+        temp = temp->next;    // Move to next node
+        len++;                // Count increment
+    }
+    return len;               // Return final count
 }
 
+
+// Insert node at a specific position in the Linked List
 void insertAtPosition(int data, int position, Node* &head, Node* &tail) {
-        if(head == NULL) {
-                Node* newNode = new Node(data);
-                head = newNode;
-                tail = newNode;
-                return;
-        }
-        //step1: find the position: prev & curr;
 
-        if(position == 0) {
-                insertAtHead(head, tail , data);
-                return;
-        }
-       
-        int len = findLength(head);
-        
-        if(position >= len) {
-                insertAtTail(head, tail, data);
-                return;
-        }
-        //ste1:find prev and curr
-        int i = 1;
-        Node* prev = head;
-        while(i < position) {
-                prev= prev -> next;
-                i++;
-        }
-        Node* curr = prev -> next;
+    // CASE 1️⃣: If list is empty
+    if(head == NULL) {
+        Node* newNode = new Node(data); // Create node
+        head = newNode;                 // Set head and tail to same node
+        tail = newNode;
+        return;
+    }
 
-        //step2;
-        Node* newNode = new Node(data);
+    // CASE 2️⃣: Insert at position = 0 → means insert at head
+    if(position == 0) {
+        insertAtHead(head, tail, data); // Already created function
+        return;
+    }
 
-        //step3:
-        newNode -> next = curr;
+    // Find total nodes in list
+    int len = findLength(head);
 
-        //step4:
-        prev -> next = newNode;
+    // CASE 3️⃣: If position is >= length → insert at tail (end)
+    if(position >= len) {
+        insertAtTail(head, tail, data);
+        return;
+    }
+
+
+    // CASE 4️⃣: Insert in the middle (valid index inside list)
+
+    // Step 1: Move `prev` to node just before the insertion point
+    int i = 1;
+    Node* prev = head;
+    while(i < position) {     // Stop one step before target index
+        prev = prev->next;
+        i++;
+    }
+
+    Node* curr = prev->next;  // Node currently at the target position
+
+    // Step 2: Create new node
+    Node* newNode = new Node(data);
+
+    // Step 3: Link new node to current node
+    newNode->next = curr;
+
+    // Step 4: Link previous node to new node
+    prev->next = newNode;
 }
+
 
 int main() {
 
