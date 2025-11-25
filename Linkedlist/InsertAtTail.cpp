@@ -48,36 +48,11 @@ void print(Node* head) {
    
 }
 int main(){
-    Node* head=NULL;
-    Node* tail=NULL;
-    int choice,data;
-    while(true){
-        cout<<"1. insert at Head"<<endl;
-        cout<<"2. insert at Tail"<<endl;
-        cout<<"3. print"<<endl;
-        cout<<"4. exit"<<endl;
-        cout<<"enter your choice: ";
-        cin>>choice;
-        switch(choice){
-            case 1:
-            cout<<"enter Head Elements:";
-            cin>>data;
-            InsertAtHead(head,tail,data);
-            break;
-
-            case 2:
-            cout<<"enter Tail Elemnts:";
-            cin>>data;
-            InsertAtTail(head,tail,data);
-            break;
-            case 3:
-            print(head);
-            break;
-            cout<<endl;
-            case 4:
-            return 0;
-            default:
-            cout<<"your Invalid Choice:";
-        }
-    }
+   Node* head=new Node(10);
+ Node* tail=head;
+InsertAtHead(head,tail,50);
+  InsertAtHead(head,tail,40);
+  InsertAtTail(head,tail,60);
+ cout<<"printing Linklist"<<endl;
+ Printing(head);
 }
