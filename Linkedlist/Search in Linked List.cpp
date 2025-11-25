@@ -1,13 +1,20 @@
-// srtriver sheet
+bool searchKey(Node* head, int key) {
 
- bool searchKey(int n, struct Node* head, int key) {
-        // Code here
-        Node* temp=head;
-        while(temp!=NULL){
-            if(temp->data==key){
-                return true;
-            }
-            temp=temp->next;
+    // Start traversing the list from the head
+    Node* temp = head;
+
+    // Loop until we reach the end of the linked list
+    while(temp != NULL) {
+
+        // Check if current node's data matches the key
+        if(temp->data == key) {
+            return true;  // Key found ✔
         }
-        return false;
+
+        // Move to the next node
+        temp = temp->next;
     }
+
+    // If loop ends and key not found, return false
+    return false;
+}
