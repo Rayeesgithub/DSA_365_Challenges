@@ -63,8 +63,8 @@ void insertAtHead(Node* &head, Node* &tail, int data) {
 void DelationPos(Node* &head, Node* &tail, int position) {
     // Case: Deleting the head node
     if(position == 1) {
-        Node* temp = head;
-        head = head->next;
+        Node* temp = head;  // Store current head
+        head = head->next;  // Move head to next node
         if (head != NULL) {
             head->prev = NULL;
         }
