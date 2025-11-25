@@ -66,30 +66,50 @@ void insertAtTail(Node* &head,Node* &tail,int data){
       tail=newNode;
    }
 }
-void insertAtPoisition(Node* &head,Node* &tail,int data,int position){
-    if(position == 0) {
-                insertAtHead(head, tail , data);
-                return;
-        }
-   int len=findLength(head);
-   if(position>=len){
-    insertAtTail(head, tail, data);
-                return;
-   }
-   int i=1;
-   Node* prevNode=head;
-   while(i<position-1){
-      prevNode=prevNode->next;
-      i++;
-   }
-   Node* curr=prevNode->next;
+void InsertAtanyPosition(Node* &head, Node* &tail, int data, int position) {
 
-   Node* newNode=new Node(data);
-    prevNode -> next = newNode;
-   newNode->prev=prevNode;
-   newNode->next=curr;
-   curr->prev=newNode;
+    // 🔹 Case 1: Insert at head (position = 0)
+    if(position == 0) {
+        InsertAtHead(head, tail, data);
+        return;   // must return after inserting
+    }
+
+    // 🔹 Get length of the list
+    int len = getLength(head);
+
+    // 🔹 Case 2: Insert at tail (position >= len)
+    if(position >= len) {
+        InsertAtTail(head, tail, data);
+        return;   // missing return (important)
+    }
+
+    // 🔹 Now inserting in middle of list
+
+    // We need to stop at (position - 1)
+    int i = 0;
+    Node* prevNode = head;
+
+    // Move prevNode to one position before insertion point
+    while(i < position - 1) {
+        prevNode = prevNode->next;
+        i++;
+    }
+
+    // curr = node currently at "position"
+    Node* curr = prevNode->next;
+
+    // Create new node
+    Node* newNode = new Node(data);
+
+    // 🔹 Connect newNode between prevNode and curr:
+
+    prevNode->next = newNode; // prev -> new node
+    newNode->prev = prevNode; // new -> prev link
+
+    newNode->next = curr;     // new -> curr
+    curr->prev = newNode;     // curr -> new
 }
+
 int main(){
    Node* head=NULL;
    Node* tail=NULL;
