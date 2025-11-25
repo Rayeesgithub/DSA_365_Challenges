@@ -1,3 +1,7 @@
+head=1 2 3 4 5  ,  key=3  return true
+head=1 2 3 4 5 ,  key=8   return false
+
+
 bool searchKey(Node* head, int key) {
 
     // Start traversing the list from the head
