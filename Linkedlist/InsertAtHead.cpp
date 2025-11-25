@@ -1,66 +1,54 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-class Node{
-    public:
-    int data;
-    Node* next;
-     Node(){
-        this->data=0;
-        this->next=NULL;
-     }
-     Node(int data){
-        this->data=data;
-        this->next=NULL;
-     }
-};
-void InsertAtHead(Node* &head, Node* &tail,int data){
-    if(head==NULL){
-        Node* newNode=new Node(data);
-        head=newNode;
-        tail=newNode;
-        return;
-    }
-    else{
-        Node* newNode=new Node(data);
-        newNode->next=head;
-        head=newNode;
-    }
-}
-// Function to print the Linked List
-void print(Node* head) {
-    Node* temp = head;
-    while (temp != NULL) {
-        cout << temp->data << "-> ";
-        temp = temp->next;
-    }
-   
-}
-int main(){
-    Node* head=NULL;
-    Node* tail=NULL;
-    int data,choice;
-    while(true){
-        cout<<"1. Insert at Head"<<endl;
-        cout<<"2. print"<<endl;
-        cout<<"3. exit"<<endl;
-        cout<<"enter your choice: ";
-        cin>>choice;
-        switch(choice){
-            case 1: 
-            cout << "Enter data to insert at head: ";
-             cin >> data; 
-             InsertAtHead(head, tail, data);
-              break;
 
-            case 2:
-            cout<<"print Elemnt:";
-            print(head);
-            break;
-            cout<<endl;
-            case 3:
-            return 0;
-            default:
-            cout<<"your Invalid Choice:";
-        }
+// Node class to represent each element of Linked List
+class Node {
+public:
+    int data;      // stores value
+    Node* next;    // stores address of next node
+    
+    // Constructor: initialize data and next pointer
+    Node(int data) {
+        this->data = data;
+        this->next = NULL;
     }
+};
+
+// Insert new node at Head (Beginning of Linked List)
+void InsertAtHead(Node* &head, Node* &tail, int data) {
+    // If list is empty
+    if (head == NULL) {
+        Node* newNode = new Node(data); // create new node
+        head = newNode;                 // both head and tail will point to this node
+        tail = newNode;
+        return;                          // exit function
+    }
+
+    // If list already has elements
+    Node* newNode = new Node(data); // create new node
+    newNode->next = head;          // link new node to previous head
+    head = newNode;                // move head to new node
+}
+
+// Function to print Linked List
+void print(Node* head) {
+    Node* temp = head;  // start from head
+    while (temp != NULL) { 
+        cout << temp->data << " -> "; // print data
+        temp = temp->next;            // move to next node
+    }
+    cout << "NULL" << endl;  // end of list
+}
+
+int main() {
+    Node* head = NULL; // Initially list is empty
+    Node* tail = NULL; // tail also NULL
+
+    InsertAtHead(head, tail, 30); // List: 30
+    InsertAtHead(head, tail, 20); // List: 20 -> 30
+    InsertAtHead(head, tail, 10); // List: 10 -> 20 -> 30
+
+    print(head); // Print list
+
+    return 0;
 }
