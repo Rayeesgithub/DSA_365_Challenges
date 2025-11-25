@@ -7,11 +7,11 @@ class Node{
  int data;
  Node* next;
  Node* prev;
- Node(){
-   this->data=0; 
-   this->next=NULL;
-   this->prev=NULL;
- }
+ // Node(){
+ //   this->data=0; 
+ //   this->next=NULL;
+ //   this->prev=NULL;
+ // }
  Node(int data){
    this->data=data;
    this->next=NULL;
@@ -37,20 +37,29 @@ int findLength(Node* &head){
    }
    return len;
 }
-void insertAtHead(Node* &head,Node* &tail,int data){
-    if(head==NULL){
-      Node* newNode=new Node(data);
-      head=newNode; 
-      tail=newNode;
-      return;
+void insertAtHead(Node* &head, Node* &tail, int data) {
+
+    // If list is empty
+    if(head == NULL) {
+        Node* newNode = new Node(data);
+        head = newNode;
+        tail = newNode;
+        return;
     }
-    else{
-      Node* newNode=new Node(data);
-      newNode->next=head;
-      head->prev=newNode;
-     head=newNode;
-    }
+
+    // Create new node
+    Node* newNode = new Node(data);
+
+    // Link new node to current head
+    newNode->next = head;
+
+    // Old head should point back to new node
+    head->prev = newNode;
+
+    // Update head to new node
+    head = newNode;
 }
+
 int main(){
    Node* head=NULL;
    Node* tail=NULL;
