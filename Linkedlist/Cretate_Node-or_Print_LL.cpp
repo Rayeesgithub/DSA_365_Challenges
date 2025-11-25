@@ -1,36 +1,58 @@
 // basic love babbar
 
-#include<iostream>
+why we need consructor function
+ Node(int value) {
+        this->data = value;
+        this->next = nullptr;
+    }
+Answer->  
+    Example using constructor: Node* newNode = new Node(10);
+    Example without constructor: We would need to write extra lines every time:
+      Node* newNode = new Node;
+      newNode->data = 10;
+      newNode->next = nullptr;
+
+
+
+
+
+#include <iostream>
 using namespace std;
 
-class Node{
-    public:
+// Node structure
+class Node {
+public:
     int data;
     Node* next;
-    Node(){
-        this->data=data;
-        this->next=NULL;
-    }
-    Node(int data){
-        this->data=data;
-        this->next=NULL;
+      
+    Node(int value) {
+        this->data = value;
+        this->next = nullptr;
     }
 };
-// Function to print the linked list
-void print(Node* &head){
-    Node* temp=head;
-    while(temp!=NULL){
-        cout<<temp->data<<" ";
-        temp=temp->next;
+
+// Function to print Linked List
+void printList(Node* head) {
+    Node* temp = head;
+    while (temp != nullptr) {
+        cout << temp->data << " ";
+        temp = temp->next;
     }
 }
-int main(){
-    Node* first=new Node(1);
-    Node*second=new Node(2);
-    Node* third=new Node(3);
 
-    first->next=second;
-    second->next=third;
-    cout<<"print all lilnkedlist"<<endl;
-    print(first);
+int main() {
+    // Creating nodes
+    Node* head = new Node(10);
+    Node* second = new Node(20);
+    Node* third = new Node(30);
+
+    // Linking nodes
+    head->next = second;
+    second->next = third;
+
+    // Printing Linked List
+    cout << "Linked List: ";
+    printList(head);
+
+    return 0;
 }
