@@ -1,4 +1,4 @@
-https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/
+ https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/
 // striver sheet
 Input:  head = [1, 1, 2, 3, 3]
 Start at first 1
@@ -31,10 +31,12 @@ ListNode* deleteDuplicates(ListNode* head) {
 
         // Check if next node exists AND both values are equal
         if(curr->next != NULL && curr->val == curr->next->val) {
-
+              //Node * temp= curr=->next;
             // Skip the duplicate node
             // curr->next is duplicate, so link to next->next
             curr->next = curr->next->next;
+                //temp->next=NULL;
+                // delete temp;
         }
         else {
             // Move forward only when no duplicate
