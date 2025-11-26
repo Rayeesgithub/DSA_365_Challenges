@@ -1,6 +1,7 @@
 https://leetcode.com/problems/reverse-linked-list/description/
 
-
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
 
 ✅ total time = O(n) && space = O(n)
 ListNode* solve(ListNode* &prev, ListNode* &curr) {
@@ -63,6 +64,7 @@ return prev (which is 3)
 
     final reverse-> 3,2,1,NULL
 
+    ✅ time:0(n) space=(1)
 ListNode* reverseList(ListNode* head) {
 
         ListNode* prev = NULL;   // Pointer to store previous node (starts as NULL)
