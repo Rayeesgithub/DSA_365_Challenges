@@ -1,6 +1,47 @@
 // love babbar
 https://www.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1
 
+Input: LinkedList: 1->2->3->4->5->6->7->8->9, k = 2
+Output: 8
+Explanation: The given linked list is 1->2->3->4->5->6->7->8->9. The 2nd node from end is 8.
+
+
+
+// Function to calculate total length of linked list
+int getLen(Node* &head){
+    int len = 0;
+    Node* temp = head;
+
+    // Traverse entire list and count the nodes
+    while(temp != NULL){
+        temp = temp->next;
+        len++;                 // increase length
+    }
+    return len;
+}
+
+int getKthFromLast(Node* head, int k) {
+    // First find total length of the list
+    int len = getLen(head);
+
+    Node* temp = head;
+
+    // Traverse the list until temp points to the Kth node from end
+    while(temp != NULL){
+
+        // When remaining length equals k → this node is the Kth from last
+        if(len == k){
+            return temp->data;   // return the value
+        }
+        else{
+            len--;               // decrease remaining length
+            temp = temp->next;   // move to next node
+        }
+    }
+
+    return -1;  // If k is larger than length → invalid case
+}
+       
 //approach1
 void  getElem(Node* &head,int &k,int &ans){
        if(head==0) return;
@@ -17,37 +58,3 @@ void  getElem(Node* &head,int &k,int &ans){
         return ans;
     }
 
-//approach2
-  int getLen(Node* &head){
-         int len=0;
-         Node* temp=head;
-         while(temp!=NULL){
-             temp=temp->next;
-             len++;
-         }
-         return len;
-     }
-    int getKthFromLast(Node *head, int k) {
-        // Your code here
-      
-        int len=getLen(head);
-        Node* temp=head;
-        // The position from the start that corresponds to the k-th from last
-    int targetIndex = len - k;
- // Check if k is out of bounds
-    if (k > len || k <= 0) {
-        return -1; // k is invalid
-    }
-
-    int currentIndex = 0;
-    while (temp != NULL) {
-        // When the current index matches the target index, return the value
-        if (currentIndex == targetIndex) {
-            return temp->data;
-        }
-        temp = temp->next;
-        currentIndex++;
-    }
-
-    return -1; // In case something goes wrong
-    }
