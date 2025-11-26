@@ -1,47 +1,89 @@
 https://leetcode.com/problems/reverse-linked-list/description/
-striver sheet
 
 
-// by loop apprach
-ListNode* reverseList(ListNode* head) {
-    // Initialize three pointers: prev (to NULL), curr (to head), and forward (initially not used)
-    ListNode* prev = NULL;   
-    ListNode* curr = head;    // This pointer is used to traverse the list
 
-    while (curr != NULL) {
-        // Step 1: Store the next node (forward) to keep track of the remaining list
-        ListNode* forward = curr->next; // forward is used to temporarily hold the next node
-
-        // Step 2: Reverse the current node's pointer to point to the previous node
-        curr->next = prev; 
-
-        // Step 3: Move the prev pointer to the current node (advance prev one step)
-        prev = curr; 
-
-        // Step 4: Move the curr pointer to the next node (advance curr one step)
-        curr = forward; 
-    }
+✅ total time = O(n) && space = O(n)
+ListNode* solve(ListNode* &prev, ListNode* &curr) {
     
-    // At the end of the loop, prev will be pointing to the new head of the reversed list
-    return prev;
+    // BASE CASE:
+    // If current node becomes NULL, we have reached the end.
+    // At this moment, prev is the NEW HEAD of reversed list.
+    if(curr == NULL) 
+        return prev;
+
+    // Store next node before breaking the link
+    ListNode* forward = curr->next;
+
+    // Reverse the link: point current node backward
+    curr->next = prev;
+
+    // Recursive call with:
+    // prev  = curr
+    // curr  = forward (next node)
+    return solve(curr, forward);
+}
+
+// Wrapper function that sets up initial values
+ListNode* reverseList(ListNode* head) {
+
+    ListNode* prev = NULL;   // Start of reversed list will be NULL initially
+    ListNode* curr = head;   // Start from head
+
+    // Call recursive function
+    return solve(prev, curr);
+}
 
 
 
-// Recursive Approach
- ListNode* reverseFxn(ListNode* prev, ListNode* curr){
-           if(curr==NULL){
-            return prev;
+Dry RUN_> 1 → 2 → 3 → NULL
+    CALL1:
+    prev = NULL
+curr = 1
+forward = 2
+1->next = NULL
+call solve(1, 2)
+
+    CALL2:
+    prev = 1
+curr = 2
+forward = 3
+2->next = 1
+call solve(2, 3)
+
+Call3:
+prev = 2
+curr = 3
+forward = NULL
+3->next = 2
+call solve(3, NULL)
+
+Call4:
+curr == NULL
+return prev (which is 3)
+
+    final reverse-> 3,2,1,NULL
+
+ListNode* reverseList(ListNode* head) {
+
+        ListNode* prev = NULL;   // Pointer to store previous node (starts as NULL)
+        ListNode* curr = head;   // Pointer to current node
+
+        // Loop until we reach the end of the list
+        while(curr != NULL) {
+
+            // Save the next node before breaking the link
+            ListNode* forward = curr->next;
+
+            // Reverse the link: current node points to previous node
+            curr->next = prev;
+
+            // Move prev forward
+            prev = curr;
+
+            // Move curr forward
+            curr = forward;
         }
-        ListNode* forward=curr->next;
-        curr->next=prev;
-       return reverseFxn(curr,forward);
-    }
-    ListNode* reverseList(ListNode* head) {
-         ListNode* prev=NULL;
-         ListNode* curr=head;
-     
-       
-        return  reverseFxn(prev,curr);
-       
-    }
-};
+
+        // prev now becomes the new head of the reversed list
+        return prev;
+}
