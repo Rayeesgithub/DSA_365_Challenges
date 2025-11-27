@@ -2,6 +2,12 @@
 
 //https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/description/
 
+
+
+Input: head = [1,3,4,7,1,2,6]
+Output: [1,3,4,1,2,6]
+
+    
 // Broute force
 ListNode* findmid(ListNode* &head){
     ListNode* slow = head;
@@ -31,7 +37,7 @@ ListNode* deleteMiddle(ListNode* head) {
     }
 
     // ⭐ Delete middle
-    prev->next = temp->next;
+    prev->next = temp->next;  // 4 -> 7 becomes 4 -> 1 
     delete temp;
 
     return head;
