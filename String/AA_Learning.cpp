@@ -64,8 +64,14 @@ isalpha(ch) is a function from <cctype> library used to check if a character is 
 | **isupper(ch)** | Checks whether the character `ch` is an uppercase letter (A–Z).                         |
 | **isspace(ch)** | Checks whether the character `ch` is a whitespace character (space, tab, newline etc.). |
 
-14. String to Number
+14. ✅ String to Number
 stoi(s)
 stoll(s)
-15. Number to String
+15.✅ Number to String
 to_string(num)
+(16)  ✅Character → Integer
+   char ch = '5';
+int x = ch - '0';
+(17) ✅Integer → Character
+int x = 7;
+char ch = x + '0';
