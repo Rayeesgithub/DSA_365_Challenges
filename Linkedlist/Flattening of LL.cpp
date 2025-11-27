@@ -1,6 +1,18 @@
 GFG
 striver sheet
+input-> 
+5 -> 10 -> 19 -> 28
+|     |      |     |
+7     20     22    35
+|            |     |
+8            50    40
+|                  |
+30                 45
 
+Output: 5 -> 7 -> 8 -> 10 -> 19 -> 20 -> 22 -> 28 -> 40 -> 45.
+
+
+    
 Node* merge(Node* a, Node* b) {
     // If the first list (a) is empty, return the second list (b)
     if(!a) return b;
