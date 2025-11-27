@@ -1,23 +1,44 @@
-//striver
-leetcode->
-  ListNode* oddEvenList(ListNode* head) {
-        if(head==NULL){
-            return head;
-        }
-        ListNode* odd=head;
-        ListNode* even=head->next;
-        ListNode* evenNode=even;
-        while(even!=NULL && even->next!=NULL){
-            //pahle odd then even connect
-            odd->next=even->next;// move next odd node
-            odd=odd->next; //
-            //now head join
-            even->next=odd->next;
-            even=even->next;
-        }
-        odd->next=evenNode;
-        return head;
-    }
+Input: head = [1,2,3,4,5]
+Output: [1,3,5,2,4]
+
+
+ListNode* oddEvenList(ListNode* head) {
+
+    // If list has 0 or 1 nodes → return as it is
+    if (!head || !head->next) return head;
+
+    // odd pointer starts at first node
+    ListNode* odd = head;
+
+    // even pointer starts at second node
+    ListNode* even = head->next;
+
+    // Save start of even list to connect later
+    ListNode* evenHead = even;
+
+    // We separate odd and even nodes
+    while (even != NULL && even->next != NULL) {
+
+        // Connect odd nodes
+        odd->next = even->next;
+        odd = odd->next;  // move odd pointer
+
+        // Connect even nodes
+        even->next = odd->next;
+        even = even->next;  // move even pointer
+    }
+
+    // Finally attach even list after odd list
+    odd->next = evenHead;
+
+    return head;
+}
+
+
+
+
+
+// another approach
 
 //gfg
  Node *oddHead = new Node(-1), *oddTail = oddHead;
