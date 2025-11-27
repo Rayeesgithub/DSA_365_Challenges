@@ -13,34 +13,47 @@ Output: 5 -> 7 -> 8 -> 10 -> 19 -> 20 -> 22 -> 28 -> 40 -> 45.
 
 
     
-Node* merge(Node* a, Node* b) {
-    // If the first list (a) is empty, return the second list (b)
-    if(!a) return b;
+// -------------------------------------------
+// Function to merge two sorted bottom lists
+// -------------------------------------------
+Node* mergeList(Node* a, Node* b) {
     
-    // If the second list (b) is empty, return the first list (a)
-    if(!b) return a;
+    // Base cases
+    if(a == NULL) return b;
+    if(b == NULL) return a;
 
-    // Pointer to store the result of the merge
-    Node* ans = 0;
+    // Result node pointer
+    Node* result;
 
-    // Compare the data of the nodes pointed to by a and b
+    // Choose smaller value node and merge recursively
     if(a->data < b->data) {
-        ans = a; // If a's data is smaller, a becomes the head of the merged list
-        a->bottom = merge(a->bottom, b); // Recursively merge the rest of a and b
-    } else {
-        ans = b; // If b's data is smaller, b becomes the head of the merged list
-        b->bottom = merge(a, b->bottom); // Recursively merge a and the rest of b
+        result = a;
+        result->bottom = mergeList(a->bottom, b);
+    }
+    else {
+        result = b;
+        result->bottom = mergeList(a, b->bottom);
     }
 
-    return ans; // Return the merged linked list
+    result->next = NULL; // Important
+    return result;
 }
 
-Node *flatten(Node *root) {
-    // Base case: If the root is NULL, return NULL (i.e., the flattened list is empty)
-    if(root == NULL) return 0;
 
-    // Recursively flatten the list connected by `next` pointers and merge it with the current list
-    Node* mergeLL = merge(root, flatten(root->next));
+// -------------------------------------------
+// Function to flatten the linked list
+// -------------------------------------------
+Node* flatten(Node* root) {
 
-    return mergeLL; // Return the head of the flattened list
+    // Base case: empty list or only one linked list
+    if(root == NULL || root->next == NULL)
+        return root;
+
+    // 1. Recursively flatten the next list
+    root->next = flatten(root->next);
+
+    // 2. Merge current list with the already flattened list
+    root = mergeList(root, root->next);
+
+    return root; 
 }
