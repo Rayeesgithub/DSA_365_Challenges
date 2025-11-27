@@ -1,28 +1,67 @@
 https://leetcode.com/problems/intersection-of-two-linked-lists/description/
 //striver sheet
 
-//approach-1
-Brute Force Solution
-Time Complexity : O(m * n)
-Space Complexity : O(1)
+Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5],
+	// here 1 refr diffrent memory location where as 8 refer same memorry location
 
-class Solution {
-public:
-	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-		ListNode *temp;
-		while(headA != NULL){
-			temp = headB;
-			while(temp != NULL){
-				if(headA == temp){
-					return headA;
-				}
-				temp = temp -> next;
-			}
-			headA = headA -> next;
-		}
-		return NULL;
-	}
-};
+	// apprach1
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+
+        // Create a hash set to store addresses of nodes from List A
+        unordered_set<ListNode*> st;
+
+        // Step 1: Insert every node of List A into the set
+        while(headA != NULL){
+            st.insert(headA);        // store the address (node pointer)
+            headA = headA->next;     // move to next node
+        }
+
+        // Step 2: Now traverse List B and check if any node exists in the set
+        while(headB != NULL){
+            if(st.find(headB) != st.end()){
+                // If found → this is the intersection node
+                return headB;
+            }
+            headB = headB->next;     // move forward
+        }
+
+        // No intersection
+        return NULL;
+}
+
+
+//2nd approach
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+
+    // Create two pointers:
+    // d1 starts on List A, d2 starts on List B
+    ListNode* d1 = headA;
+    ListNode* d2 = headB;
+
+    // Loop continues until both pointers meet
+    // They will meet either at:
+    // 1) Intersection node, OR
+    // 2) Both become NULL (no intersection)
+    while (d1 != d2) {
+        
+        // If d1 reaches end of List A,
+        // move it to start of List B
+        // Otherwise move to next node
+        d1 = (d1 == NULL) ? headB : d1->next;
+
+        // If d2 reaches end of List B,
+        // move it to start of List A
+        // Otherwise move to next node
+        d2 = (d2 == NULL) ? headA : d2->next;
+    }
+
+    // Either intersection node OR NULL
+    return d2;
+}
+
+
+
+
 
 
 //optimal Approach
@@ -44,11 +83,7 @@ Space Complexity : O(1)
             b = b->next;
         }
 
-        // If the above loop finishes, it means one of the lists has reached its end
-        // Check if both lists have reached the same end
-        while (a->next && b->next && a != b) {
-            return 0;  // Return 0 (nullptr) indicating no intersection
-        }
+       
 
         // Determine which list has a larger length
         int blen = 0;
