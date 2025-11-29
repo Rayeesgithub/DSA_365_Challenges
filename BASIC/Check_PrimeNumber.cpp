@@ -1,29 +1,30 @@
-#include<iostream>
-using namespace std;
+Input=7
+output= prime number
+input=12
+output=Not Prime Number
+
+// Apprach 1
+Time=O(n) && space=0(1)
 bool checkPrime(int n){
-   if(n<2) return false;
-   for(int i=2; i<=n;i++){
-    if(n%i==0) return false;
-    break; // here you mistake
-   }
-   return true;
-}
-int main(){
-    int n; cout<<"enter the numer:"<<endl;
-    cin>>n;
-    if(checkPrime(n)){
-        cout<<"This is prime Number"<<endl;
+    if(n < 2) return false;
+
+    for(int i = 2; i < n; i++){
+        if(n % i == 0)
+            return false;   // found divisor → not prime
     }
-    else{
-        cout<<"this is not Prime Not Number";
-    }
+    return true;            // no divisors found → prime
 }
-// Approach-2 optimal
+
+
+// optimal approach
+Time=O(√n) && space=0(1)
 bool checkPrime(int n){
-   if(n<2) return false;
-    for(int i = 1; i <= sqrt(n); i++){
-    if(n%i==0) return false;
-     // here you mistake
-   }
-   return true;
+    if(n < 2) return false;
+
+    for(int i = 2; i <= sqrt(n); i++){
+        if(n % i == 0)
+            return false;
+    }
+
+    return true;
 }
