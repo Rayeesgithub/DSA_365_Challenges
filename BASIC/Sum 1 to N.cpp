@@ -1,4 +1,11 @@
+
+Input: N=5
+Output: 15
+Explanation: 1+2+3+4+5=15
+
+
 // Apprach1=by looping  Time Complexity: O(N)  , Space Complexity: O(1)
+    
 void solve(int n) {
     int sum = 0;
     for (int i = 1; i <= n; i++) {
@@ -10,11 +17,16 @@ void solve(int n) {
 
     solve(5);
     }
+
+
 // apprach2-> by Formula   Time Complexity: O(1),  Space Complexity: O(1)
  void solve(int N) {
     int sum = N * (N + 1) / 2;
     cout<<"The sum of the first "<<N<<" numbers is: "<<sum<<endl;
   }
+
+
+
 //apprach3-by recursion   Time Complexity: O(N)      ,     Space Complexity: O(N)
 void func(int i, int sum){
    
