@@ -1,4 +1,9 @@
 //https://www.geeksforgeeks.org/problems/print-gfg-n-times
+
+Input: N = 3
+Output: Ashish Ashish Ashish 
+Explanation: Name is printed 3 times.
+
  void print(int N,int i){
       if(i>N) return;
       std::cout<<"GFG"<<" ";
