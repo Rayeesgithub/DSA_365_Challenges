@@ -1,40 +1,54 @@
-                                
+Example 1:
+Input:N = 12345
+Output:5 
+
+  //Time-com->0(logn) and space-com-> 0(1)
+  
 #include <iostream>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
-
-// Function to count the number
-// of digits in an integer 'n'.
+// Function to count how many digits are in a number
 int countDigits(int n){
-    // Initialize a counter variable
-    // 'cnt' to store the count of digits.
-    int cnt = 0;
-    // While loop iterates until 'n'
-    // becomes 0 (no more digits left).
+  
+    int cnt = 0;      // Step 1: Initialize counter to 0
+  
+    // Step 2: Run loop until number becomes 0
     while(n > 0){
-        // Increment the counter
-        // for each digit encountered.
-        cnt = cnt + 1;
-        // Divide 'n' by 10 to
-        // remove the last digit.
-        n = n / 10;
+   
+        cnt = cnt + 1;   // Count one digit
+        
+        n = n / 10;      // Remove the last digit from the number
+                         // Example: 329823 -> 32982 -> 3298 -> ...
     }
-    // Return the
-    // count of digits.
-    return cnt;
+  
+    return cnt;          // Step 3: Return total digit count
 }
 
 
 
 int main() {
-    int N = 329823;
+    int N = 329823;        // Sample number
     cout << "N: "<< N << endl;
-    int digits = countDigits(N);
-    cout << "Number of Digits in N: "<< digits << endl;
+
+    int digits = countDigits(N);   // Calling the function
+
+    cout << "Number of Digits in N: "<< digits << endl;  // Output
     return 0;
 }
-//Time-com->0(logn) and space-com-> 0(1)
+
+
+✅ Dry Run (Step-by-Step Execution)
+| Step        | n value | cnt value | Explanation       |
+| ----------- | ------- | --------- | ----------------- |
+| Start       | 329823  | 0         | Initialize        |
+| Iteration 1 | 32982   | 1         | One digit counted |
+| Iteration 2 | 3298    | 2         | Another digit     |
+| Iteration 3 | 329     | 3         | →                 |
+| Iteration 4 | 32      | 4         | →                 |
+| Iteration 5 | 3       | 5         | →                 |
+| Iteration 6 | 0       | 6         | Loop stops        |
+
+
+
                                 
                             
