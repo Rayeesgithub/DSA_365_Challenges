@@ -1,4 +1,10 @@
 //https://leetcode.com/problems/valid-palindrome/description/
+
+Input: Str =  “ABCDCBA”
+Output: Palindrome
+Explanation: String when reversed is the same as string
+
+
 bool isPalindrome(string s) { 
     int start = 0; 
     int end = s.length() - 1;
