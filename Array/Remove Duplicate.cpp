@@ -1,53 +1,64 @@
 //https://leetcode.com/problems/remove-duplicates-from-sorted-array/
-// striver sheet
+
+Input: arr[]=[1,1,2,2,2,3,3]
+Output: [1,2,3,_,_,_,_]
+Explanation: Total number of unique elements are 3, i.e[1,2,3] and Therefore return 3 after assigning [1,2,3] in the beginning of the array.
+
+
 //approach-1
-int removeDuplicates(vector<int>& nums) {
-    // Step 1: Create a set to store only unique elements
+Insert into set-> 	O(log n) per insert
+n inserts -> O(n log n)
+Time->  O(n log n) && space=O(n) (to store unique elements)
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int arr[] = {1,1,2,2,2,3,3};
+    int n = 7;
+
+    // Set stores only unique elements (duplicates are ignored)
     set<int> st;
 
-    // Step 2: Insert each element of nums into the set
-    // Set automatically removes duplicates and keeps the elements sorted
-    for (int i = 0; i < nums.size(); i++) {
-        st.insert(nums[i]);  // e.g., nums = [1, 1, 2, 2, 3] => st = {1, 2, 3}
+    // Insert all array elements into set
+    for (int i = 0; i < n; i++) {
+        st.insert(arr[i]);  // duplicates will not be added again
     }
 
-    // Step 3: Replace the beginning of nums with the unique elements from the set
-    int i = 0;
-    for (auto it : st) {
-        nums[i++] = it;  // nums = [1, 2, 3, ?, ?, ...]
+    // Printing unique values
+    for (int x : st) {
+        cout << x << " ";
     }
-
-    // Step 4: Return the number of unique elements
-    return st.size();  // In this example, returns 3
+    return 0;
 }
 
 
-
+// approach2
+Time->  O(n log n) && space=O(n)   
+    unordered_set (O(n) time)
 int main() {
-    vector<int> arr = {5, 3, 2, 3, 5, 1, 4, 2};
+    int arr[] = {1,1,2,2,2,3,3};
+    int n = 7;
 
-    // Use map instead of unordered_map
+    // Map will store element as key & its frequency as value
     map<int, int> mp;
 
-    // Count occurrences
-    for (int i = 0; i < arr.size(); i++) {
-        mp[arr[i]]++;
+    // Counting frequency of each element
+    for (int i = 0; i < n; i++) {
+        mp[arr[i]]++;  // increase count
     }
 
-    // Print unique elements in sorted order
+    // Printing only unique elements (keys of map)
     for (auto it : mp) {
-        cout << it.first << " ";
+        cout << it.first << " ";  // it.first = element
     }
-
     return 0;
 }
 
 
 
-//print
 
-
-// second approach
+//  approach 3
+Time->  O(n) && space=O(1)
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
