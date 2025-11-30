@@ -4,6 +4,9 @@
 //          15  1
 // Explanation: 10 occurs 3 times in the array 5 occurs 2 times in the array  15 occurs 1 time in the array
 
+
+
+
 //	     broute force  Time Complexity: O(N*N)  Space Complexity: O(n)
 #include <bits/stdc++.h>
 using namespace std;
@@ -30,18 +33,27 @@ void countFreq(int arr[], int n)
     }
 }
 
-//optimal approach         Time Complexity: O(N)  Space Complexity: O(n)
+
+
+//optimal approach         Time Complexity: O(N)  Space Complexity: O(n) unordered_map stores unique elements
 void Frequency(int arr[], int n) 
 {
+    // Create an unordered_map to store frequencies
+    // Key   -> element of array
+    // Value -> frequency count
     unordered_map<int, int> map;
  
+    // Traverse the array once
     for (int i = 0; i < n; i++)
-        map[arr[i]]++;
+        map[arr[i]]++;   // Increase frequency of arr[i]
  
-    // Traverse through map and print frequencies
+    // Traverse through the hash map and print element + its frequency
+    // x.first  -> key (array element)
+    // x.second -> value (frequency)
     for (auto x : map)
         cout << x.first << " " << x.second << endl;
 }
+
  
 int main()
 {
