@@ -1,46 +1,90 @@
 //https://leetcode.com/problems/rearrange-array-elements-by-sign/
-//striver sheet
+
+
+Example 1:
+Input:
+arr[] = {1,2,-4,-5}, N = 4
+Output:
+1 -4 2 -5
+Explanation: 
+Positive elements = 1,2
+Negative elements = -4,-5
+
+    
+// approach1 Time=0(n) && space=0(n)
+// Approach 1: Brute Force
+// Time Complexity = O(N)
+// Space Complexity = O(N)
 
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-        broute force Time-com=0(N) && space-com=0(N)
-     vector<int>ans,positive,negative;
-     // Separate positive and negative elements
-     for(int i=0; i<nums.size(); i++){
-        if(nums[i]>=0)
-        positive.push_back(nums[i]);
-        else if(nums[i]<0){
-            negative.push_back(nums[i]);
+
+        vector<int> ans;          // Final result array
+        vector<int> positive;     // Store all positive numbers
+        vector<int> negative;     // Store all negative numbers
+
+        // Step 1: Separate positive and negative elements
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] >= 0)
+                positive.push_back(nums[i]);
+            else
+                negative.push_back(nums[i]);
         }
-     }   // Arrange positive and negative elements alternately
-    int pos = 0, neg = 0;
-    for (int i = 0; i < nums.size(); i++) {
-        if (i % 2 == 0) {
-            ans.push_back(positive[pos++]);
-        } else {
-            ans.push_back(negative[neg++]);
+
+        // Step 2: Merge them alternately → pos, neg, pos, neg...
+        int pos = 0, neg = 0;
+
+        for (int i = 0; i < nums.size(); i++) {
+
+            // Even index → positive number
+            if (i % 2 == 0) {
+                ans.push_back(positive[pos++]);
+            }
+
+            // Odd index → negative number
+            else {
+                ans.push_back(negative[neg++]);
+            }
         }
-      
+
+        return ans;
     }
+};
+
+
+
 
       
-    //optimized
-     vector<int> rearrangeArray(vector<int>& nums) {
-    vector<int> ans(nums.size(), 0); // Create a result vector of the same size as nums, initialized to 0
-    int pos = 0;  // Index for placing positive numbers
-    int neg = 1;  // Index for placing negative numbers
-    
-    for(int i = 0; i < nums.size(); i++) {
-        if(nums[i] > 0) { // If the current element is positive
-            ans[pos] = nums[i]; // Place it at the current 'pos' index in the result array
-            pos += 2; // Increment the pos index by 2 
-        } else {     // If the current element is negative
-            ans[neg] = nums[i]; // Place it at the current 'neg' index in the result array
-            neg += 2; 
-        }
-    }
-    return ans; 
-}
+//optimized approach
+// Optimized Approach
+// Time Complexity = O(N)
+// Space Complexity = O(N)
 
+class Solution {
+public:
+vector<int> rearrangeArray(vector<int>& nums) {
+
+vector<int> ans(nums.size(), 0);  // Pre-allocated result array
+
+        int pos = 0; // Even index position → for positive numbers
+        int neg = 1; // Odd index position → for negative numbers
+
+        for (int i = 0; i < nums.size(); i++) {
+
+            if (nums[i] > 0) {
+                // Place positive number at even index
+                ans[pos] = nums[i];
+                pos += 2;              // Move to next even index
+            }
+
+            else {
+                // Place negative number at odd index
+                ans[neg] = nums[i];
+                neg += 2;              // Move to next odd index
+            }
+        }
+
+        return ans;
+    }
 };
