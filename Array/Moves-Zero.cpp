@@ -8,94 +8,99 @@ Explanation: All the zeros are moved to the end and non-negative integers are mo
 
 
 
-#include <iostream>
-#include <vector>
-using namespace std;
-// approacch 1 T.Complexity=0(n) && space complexity=0(n)
-void moveZeroes(vector<int>& nums) {
-    int n = nums.size();  // Get the size of the input vector
- // Create a temporary vector to store non-zero elements
-    vector<int> temp;
-  // Add non-zero elements to the temporary vector
-    for (int i = 0; i < n; i++) {
-        if (nums[i] != 0) {
-            temp.push_back(nums[i]);
+
+// approacch 1
+T.Complexity=0(n) && space complexity=0(n)
+
+void moveZeroes(vector<int>& arr) {
+
+    vector<int> ans;  // Stores all non-zero elements
+    int zero = 0;     // Counts how many zeros are present
+
+    // STEP 1: Separate non-zeros and count zeros
+    for (int i = 0; i < arr.size(); i++) {
+
+        // If element is NOT zero → store it
+        if (arr[i] != 0) {
+            ans.push_back(arr[i]);
+        }
+        else {
+            zero++;  // Count zero
         }
     }
- int size=temp.size();
+
+    // STEP 2: Add required number of zeros at the end
+    for (int i = 0; i < zero; i++) {
+        ans.push_back(0);
+    }
+
+    // (Optional) Copy ans back if needed
+}
+
+
+
+// broute force-> approach-2
+T.Complexity=0(n) && space complexity=0(n)
+
     
-    // Copy elements from the temporary vector back to the original vector
-    for (int i = 0; i < size; i++) {
-        nums[i] = temp[i];
+void moveZeroes(vector<int>& nums) {
+
+    int n = nums.size();
+    vector<int> ans;   // Stores non-zero elements
+    vector<int> ans2;  // Stores zero elements
+
+    // STEP 1: Separate non-zeros and zeros into 2 arrays
+    for (int i = 0; i < n; i++) {
+
+        if (nums[i] != 0) {
+            ans.push_back(nums[i]);   // non-zero
+        }
+        else {
+            ans2.push_back(nums[i]);  // zero
+        }
     }
 
-    for (int i = size; i < n; i++) {
-       
-            nums[i]=0; }
-  
-
-
-// broute force
- void moveZeroes(vector<int>& nums) {
-      int n=nums.size();
-      vector<int>ans; vector<int>ans2;
-      for(int i=0; i<n;i++){
-        if(nums[i]!=0){
-          ans.push_back(nums[i]);
-        }
-        else{
-            ans2.push_back(nums[i]);
-        }
-      }  
-       
-       for(int i=0; i<ans.size();i++){
-       nums[i]=ans[i];
-       
-      }  
-      int m=ans.size(); 
-      for(int i=0; i<ans2.size();i++){
-       nums[i+m]=ans2[i];
-       
-      }  
-     
+    // STEP 2: Place all non-zeros back in nums[]
+    for (int i = 0; i < ans.size(); i++) {
+        nums[i] = ans[i];
     }
-};
+
+    // STEP 3: Place all zeros at the end
+    int m = ans.size();
+    for (int i = 0; i < ans2.size(); i++) {
+        nums[m + i] = ans2[i];
+    }
+}
 
 
 
 
 // otimize approazed
-    void MoveZero(int arr[],int &n){
-   int left=0;
-   for(int right=0; right<n; right++){
-     if(arr[right]!=0){
-        swap(arr[left],arr[right]);
-        left++;
-     }
-   }
+T.Complexity=0(n) && space complexity=0(1)
+ void MoveZero(int arr[], int &n) {
 
-   for(int i=0; i<n; i++){
-    cout<<arr[i]<<" ";
-   }
+    int left = 0;  // Pointer for placing next non-zero
+
+    // right pointer moves normally
+    for (int right = 0; right < n; right++) {
+
+        // Whenever a non-zero is found
+        if (arr[right] != 0) {
+
+            // Swap it with element at 'left'
+            swap(arr[left], arr[right]);
+
+            // Move left to next position
+            left++;
+        }
+    }
+}
+
 
 
 
         
-    // second approach-> using two pointer T.Complexity=0(n) && space complexity=0(1)
-int j=-1;
-for(int i=0; i<n; i++){
-if(nums[i]==0) {
-    j=i;
-    break;
-}
-}
-for(int i=j+1; i<n; i++){
-    if(nums[i]!=nums[j]){
-        swap(nums[j],nums[i]);
-        j++;
-    }
-}
-}
+   
 int main() {
     vector<int> nums = { 9 ,0 ,12 ,8 ,0 ,4 ,0 ,5,0};
 
