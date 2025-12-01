@@ -1,27 +1,22 @@
-// gfg> Array Search
-// striver sheet
-#include<iostream>
-using namespace std;
-bool LinearSearch(int arr[],int target,int size){
-for(int i=0; i<=size-1; i++){
-    if(arr[i]==target){
-        return true;
+Example 1:  
+Input: arr[] = 1 2 3 4 5, num = 3  
+Output: 2  `
+Explanation: 3 is present at the 2nd index of the array.
+
+
+
+Time=0(n) && space=0(1)
+    
+int search(int arr[], int n, int target)
+{
+    // Loop through the array to find the number
+    for(int i = 0; i < n; i++)
+    {
+        // If the current element matches the number, return its index
+        if(arr[i] == target)
+            return i;
     }
-    }
-return false;
-}
-int main(){
- int arr[]={4,5,8,12,34,67,38,67,89};
- int size=sizeof(arr)/sizeof(int);
- int target;
- cout<<"enter the your target element"<<endl;
-cin>>target;
-bool ans= LinearSearch(arr,target ,size);
- if(ans){
-    cout<<"Found the target Element"<<endl;
- }
- else{
-    cout<<"Not Found Target Element is"<<endl;
- }
-return 0;
+
+    // If the number is not found, return -1
+    return -1;
 }
