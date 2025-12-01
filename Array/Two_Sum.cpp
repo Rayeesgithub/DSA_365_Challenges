@@ -3,58 +3,81 @@
 class Solution {
 public:
      // approach1-broute force Time Complexity: O(N2), Space Complexity: O(1)
-    vector<int> twoSum(vector<int>& nums, int target) {
-        int n=nums.size();vector<int>ans;
-    //    for(int i=0; i<n; i++){
-    //     long long int sum=0; 
-    //     for(int j=i+1; j<n; j++){
-           
-    //         if( nums[i]+nums[j]==target){
-    //             ans={i,j};
-    //         }
-    //     }
-    //    } 
-    //    return ans;
+   vector<int> twoSum(vector<int>& nums, int target) {
 
-      //approach2
-    int left=0; int right=n-1;
-   
-    vector<pair<int,int>>pr;
-     for (int i = 0; i < n; ++i) {
-        pr.push_back({nums[i], i});
-    }
+    int n = nums.size();        // size of array
+    vector<int> ans;            // to store result indices
 
-     sort(nums.begin(),nums.end());
-    while(left<right){
-          int sum = pr[left].first+pr[right].first;
-        if(sum>target){
-            right--;
-        }
-        else if(sum<target){
-            left++;
-        }
-        else{
-          return {pr[left].second, pr[right].second};
+    for (int i = 0; i < n; i++) {    
+        // pick first element one by one
+       
+        for (int j = i + 1; j < n; j++) { 
+            // pick the second element after i (avoid i == j)
+
+            // check if both numbers add up to target
+            if (nums[i] + nums[j] == target) {
+
+                ans = {i, j};   // store indices
+            }
         }
     }
-    return {-1,-1};
-    }
 
-    //3rd approach
-  #include <bits/stdc++.h>
+    return ans; // returns empty if no pair found
+}
+
+
+
+         
+         //approach2
+         approach1-broute force Time Complexity: O(N), Space Complexity: O(1)
+ #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> twoSum(int n, vector<int> &arr, int target) {
-    unordered_map<int, int> mp;
-   for(int i=0; i<n; i++){
-    int num=arr[i];
-    int first=target-num;
-    if(mp.find(first)!=mp.end()){
-        return {mp[first],i};
+vector<int> twoSum(vector<int>& arr, int target) {
+    int left = 0;
+    int right = arr.size() - 1;
+
+    while (left < right) {
+        int sum = arr[left] + arr[right];
+
+        if (sum == target) {
+            return {left, right};   // indices found
+        }
+        else if (sum < target) {
+            left++;  // need a bigger sum
+        }
+        else {
+            right--; // need a smaller sum
+        }
     }
-    mp[num]=i;
-   }
-    return { -1, -1};
+
+    return {-1, -1};  // not found
+}
+
+
+
+
+    //3rd approach
+ 
+
+vector<int> twoSum(int n, vector<int> &arr, int target) {
+
+    unordered_map<int, int> mp;     // value → index
+
+    for (int i = 0; i < n; i++) {
+
+        int num = arr[i];           // current value
+        int first = target - num;   // the value we need to find
+
+        // If complement exists in map → we found the pair
+        if (mp.find(first) != mp.end()) {
+            return { mp[first], i };   // return indices
+        }
+
+        mp[num] = i;   // store current number with index
+    }
+
+    return { -1, -1 };   // if no pair exists
 }
 
 int main()
