@@ -5,7 +5,7 @@ Explanation: The first two digits or the last three digits are consecutive 1s. T
 
 
 
-
+// approach1
 //Time Complexity: O(N) space-com=0(1)
 int findMaxConsecutiveOnes(vector<int>& nums) {
     int maxi = 0;   // Initialize maxi to store the maximum count of consecutive 1s found
@@ -24,6 +24,7 @@ int findMaxConsecutiveOnes(vector<int>& nums) {
 }
 
 
+
 //anoter approach
   int count=0; vector<int>ans;
     for(int i=0; i<n; i++){
@@ -40,6 +41,8 @@ int findMaxConsecutiveOnes(vector<int>& nums) {
     maxi=max(maxi,ans[i]);
    }
    cout<<"Maximum Number of 1's:"<<maxi;
+
+
 int main() {
     vector<int> nums = {1, 1, 0, 1, 1, 1};  // Example input vector
     cout << "Max consecutive ones: " << findMaxConsecutiveOnes(nums) << endl;  // Call the function and print the result
@@ -50,9 +53,8 @@ int main() {
 
 
 
-Input: arr[] = [0, 0, 1, 0, 1, 0]
-Output: 2
-Explanation: The maximum number of consecutive 0’s in the array is 2 from index 0-1.
+
+// proble gfg
 
     class Solution {
   public:
