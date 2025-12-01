@@ -1,48 +1,76 @@
 //https://leetcode.com/problems/maximum-subarray/description/
-// striver sheet
 
-class Solution {
-public:
-    int maxSubArray(vector<int>& nums) {
-        // Approach 1: Brute Force
-        // Initialize the maximum sum to the smallest possible integer value
-        int maxi = INT_MIN;
-        int n = nums.size();
-        // Iterate over each starting point of the subarray
-        for (int i = 0; i < nums.size(); i++) {
-            // Iterate over each ending point of the subarray starting from i
-            for (int j = i; j < nums.size(); j++) {
-                int sum = 0;
-                // Calculate the sum of the subarray from index i to j
-                for (int k = i; k <= j; k++) {
-                    sum = sum + nums[k];
-                }
-                // Update the maximum sum found so far
-                maxi = max(maxi, sum);
+Example 1:  
+Input: nums = [2, 3, 5, -2, 7, -4]  
+Output: 15  
+Explanation: The subarray from index 0 to index 4 has the largest sum = 15, which is the maximum sum of any contiguous subarray.
+
+
+
+   // Approach 1: Brute Force (Time: O(n^3), Space: O(1))
+
+int maxSubArray(vector<int>& nums) {
+
+    int maxi = INT_MIN;          // stores maximum subarray sum
+    int n = nums.size();
+
+    // pick starting index i
+    for (int i = 0; i < n; i++) {
+
+        // pick ending index j
+        for (int j = i; j < n; j++) {
+
+            int sum = 0;         // reset sum for subarray (i → j)
+
+            // compute sum of nums[k] from k = i to k = j
+            for (int k = i; k <= j; k++) {
+                sum = sum + nums[k];
             }
+
+            // update maximum sum found so far
+            maxi = max(maxi, sum);
         }
-        // Return the maximum subarray sum found using brute force
-        return maxi;
+    }
+
+    // return the maximum subarray sum
+    return maxi;
+
         
+
         
       // Approach 2: Better Approach (still O(n^2))
-        // Iterate over each starting point of the subarray
-        for (int i = 0; i < nums.size(); i++) {
-            int sum = 0;
-            // Iterate over each ending point of the subarray starting from i
-            for (int j = i; j < nums.size(); j++) {
-                // Add the current element to the sum
-                sum = sum + nums[j];
-                // Update the maximum sum found so far
-                maxi = max(maxi, sum);
-            }
+        // Approach 2: Better Approach (Time: O(n^2), Space: O(1))
+
+int maxSubArray(vector<int>& nums) {
+
+    int maxi = INT_MIN;          // stores maximum subarray sum
+    int n = nums.size();
+
+    // pick starting index i
+    for (int i = 0; i < n; i++) {
+
+        int sum = 0;             // reset sum for new start index
+
+        // expand subarray from i to j
+        for (int j = i; j < n; j++) {
+
+            sum = sum + nums[j]; // add current element into running sum
+
+            // update maximum sum for each j
+            maxi = max(maxi, sum);
         }
-        // Return the maximum subarray sum found using the better approach
-        return maxi;
+    }
+
+    // return the maximum subarray sum
+    return maxi;
+}
+
         
-       
+
+
+        
       // Approach 3: Optimal Approach (Kadane's Algorithm)
-        // Initialize the current sum to 0
+       Time=(N) 
         int sum = 0;
         // Iterate through the array
         for (int i = 0; i < n; i++) {
