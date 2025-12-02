@@ -1,32 +1,46 @@
-// striver sheet
-
-#include <iostream>
-#include <vector>
+#include<bits/stdc++.h>
 using namespace std;
 
-void selectionSort(vector<int>& arr) {
-    int n = arr.size();
-    for (int i = 0; i < n - 1; i++) {
-        // Assume the minimum element is the first element of the unsorted sublist
-        int minIndex = i;
-        // Traverse the unsorted sublist to find the actual minimum element
-        for (int j = i + 1; j < n; j++) {
-            if (arr[j] < arr[minIndex]) {
-                minIndex = j;
+// Function to perform Selection Sort
+void selectionSort(vector<int>& arr){
+
+    // Outer loop: runs n-1 times (for each position in array)
+    for(int i = 0; i < arr.size() - 1; i++){
+
+        int miniIndex = i;  
+        // Assume the current index 'i' has the minimum element
+
+        // Inner loop: find the minimum element in the unsorted part
+        for(int j = i + 1; j < arr.size(); j++){
+
+            // If a smaller element is found, update miniIndex
+            if(arr[j] < arr[miniIndex]){
+                miniIndex = j;
             }
         }
-        // Swap the found minimum element with the first element of the unsorted sublist
-        swap(arr[i], arr[minIndex]);
+
+        // Swap the smallest found element with element at index 'i'
+        swap(arr[i], arr[miniIndex]);
+
+        /* 
+        // Same swap can be written manually like this:
+        int temp = arr[miniIndex];
+        arr[miniIndex] = arr[i];
+        arr[i] = temp;
+        */
     }
 }
 
 int main() {
-    vector<int> arr = {64, 25, 12, 22, 11};
+
+    // Input array
+    vector<int> arr = {13, 46, 24, 52, 20, 9, 8, 2};
+
+    // Call selection sort
     selectionSort(arr);
-    cout << "Sorted array: ";
-    for (int i = 0; i < arr.size(); i++) {
+
+    // Print sorted array
+    for(int i = 0; i < arr.size(); i++){
         cout << arr[i] << " ";
     }
-    cout << endl;
-    return 0;
 }
