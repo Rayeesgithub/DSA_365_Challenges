@@ -61,3 +61,38 @@ int main() {
         cout << arr[i] << " ";
     }
 }
+
+
+
+
+
+
+// dry run
+
+Initial Array:
+
+[5, 4, 3, 2, 1]
+   
+    Pass 1:  i = 0
+
+miniIndex = 0 → value = 5
+
+Compare with all elements:
+| j | arr[j] | miniIndex | Why            |
+| - | ------ | --------- | -------------- |
+| 1 | 4      | 1         | 4 < 5 → update |
+| 2 | 3      | 2         | 3 < 4 → update |
+| 3 | 2      | 3         | 2 < 3 → update |
+| 4 | 1      | 4         | 1 < 2 → update |
+
+    ✔ Minimum element found = 1 at index 4
+
+➡ Swap arr[0] and arr[4]
+
+Array becomes:
+[1, 4, 3, 2, 5]
+......
+......
+    so on
+
+    
