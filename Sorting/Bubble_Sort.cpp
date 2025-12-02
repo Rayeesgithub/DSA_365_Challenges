@@ -5,7 +5,7 @@ Input: N = 5, array[] = {5,4,3,2,1}
 Output: 1,2,3,4,5
 Explanation: After sorting we get 1,2,3,4,5
 
-
+BubbleSort-> largest elemnt shift to right side
     
 T.C= best-case o(n) && worst-case=0(n^2) && space=(1)
 
