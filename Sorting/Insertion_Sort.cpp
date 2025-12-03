@@ -45,10 +45,55 @@ int main() {
 }
 
 
+dry run->
+✅ Initial Array:[7, 4, 1, 5, 3]
+ ⭐ Pass 1 → i = 1
+key = 4, Left side = [7] (treated as sorted)
 
+Compare with left:
+j = 0 → arr[0] = 7
+7 > 4 → shift 7 to the right
+
+Array becomes:
+[7, 7, 1, 5, 3]
+Now j = -1 → stop
+Insert key:  arr[j+1] = arr[0] = 4
+
+Array after Pass 1:
+[4, 7, 1, 5, 3]
 
  
- 
+ ⭐ Pass 2 → i = 2
+key = 1
+Left side = [4, 7]
+Compare:
+j = 1 → 7 > 1 → shift
+[4, 7, 7, 5, 3]
+
+j = 0 → 4 > 1 → shift
+[4, 4, 7, 5, 3]
+
+j = -1 → stop
+
+Insert key at index 0:
+Array after Pass 2:
+[1, 4, 7, 5, 3]
+
+ ⭐ Pass 3 → i = 3
+key = 5
+Left side = [1, 4, 7]
+
+Compare:
+j = 2 → 7 > 5 → shift
+[1, 4, 7, 7, 3]
+j = 1 → 4 (NOT > 5) → stop
+Insert key at index j+1 = 2:
+
+Array becomes:
+[1, 4, 5, 7, 3]
+
+ so on
+...........
  
  
  
