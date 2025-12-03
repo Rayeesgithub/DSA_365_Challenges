@@ -114,3 +114,70 @@ int main() {
         cout << arr[i] << " ";
     }
 }
+
+
+✅dry run-> 
+Input:[3, 2, 8, 5, 1, 4, 23]
+    ✅ STEP 1 — Full Splitting Phase
+(We split until every element becomes a single element)
+
+Split 1:
+
+[3, 2, 8, 5, 1, 4, 23]
+→ left: [3, 2, 8, 5]
+→ right: [1, 4, 23]
+
+   ⬅️ Split Left [3, 2, 8, 5]
+
+→ left: [3, 2]
+→ right: [8, 5]
+
+Split [3,2]
+
+→ [3] and [2]
+Merge → [2,3]
+
+Split [8,5]
+
+→ [8] and [5]
+Merge → [5,8]
+
+Merge [2,3] and [5,8]
+
+Sorted → [2,3,5,8]
+
+➡️Split Right [1, 4, 23]
+
+→ left: [1,4]
+→ right: [23]
+
+Split [1,4]
+
+→ [1] and [4]
+Merge → [1,4]
+
+Merge [1,4] and [23]
+
+Sorted → [1,4,23]
+
+
+🚀 Final Merge
+
+Merge big halves:
+Left: [2,3,5,8]
+Right: [1,4,23]
+
+🔄 STEP 2 — Final Merge Dry Run
+| Left | Right | Pick   |
+| ---- | ----- | ------ |
+| 2    | 1     | **1**  |
+| 2    | 4     | **2**  |
+| 3    | 4     | **3**  |
+| 5    | 4     | **4**  |
+| 5    | 23    | **5**  |
+| 8    | 23    | **8**  |
+| —    | 23    | **23** |
+
+
+🎉 Final Sorted Array:
+[1, 2, 3, 4, 5, 8, 23]
