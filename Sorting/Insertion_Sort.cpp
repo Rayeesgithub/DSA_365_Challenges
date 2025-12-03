@@ -9,7 +9,7 @@ Output:  [1, 3, 4, 5, 7]
 using namespace std;
 
 // Function to perform Insertion Sort
-void BubbleSort(vector<int>& arr) {   // (Name is BubbleSort but logic is Insertion Sort)
+void InsertSort(vector<int>& arr) {   // (Name is BubbleSort but logic is Insertion Sort)
 
   int n = arr.size();    
   // Loop starts from index 1 because we treat arr[0] as already sorted
@@ -36,7 +36,7 @@ int main() {
   vector<int> arr = {13, 46, 24, 52, 20, 9, 8, 1};
 
   // Call sorting function
-  BubbleSort(arr);
+  InsertSort(arr);
 
   // Print sorted array
   for(int i = 0; i < arr.size(); i++) {
