@@ -1,7 +1,19 @@
 https://leetcode.com/problems/maximum-product-subarray/description/
-// striver sheet
+Input: Nums = [1,2,3,4,5,0]
+Output: 120
+Explanation: 
+In the given array, 1×2×3×4×5 gives maximum product value.
 
-// Broute Force -1
+Input: Nums = [1,2,-3,0,-4,-5]
+Output: 20
+Explanation: 
+In the given array, (-4)×(-5) gives maximum product value.
+
+
+
+  
+// Broute Force -1    Time Complexity: O(N^2) && Space Complexity: O(1),
+ 
 int maxProductSubArray(vector<int>& arr) {
   int n=arr.size(); int maxi=INT_MIN;
   for(int i=0; i<n; i++){
@@ -16,7 +28,8 @@ int maxProductSubArray(vector<int>& arr) {
 
 
 
-// optimal approach-1
+// optimal approach-1 // Time Complexity: O(N) && spaace=0(1)
+
 int maxProduct(vector<int>& nums) {
     int n = nums.size();
     int pre = 1, suff = 1; // Initialize two variables to keep track of prefix and suffix products.
@@ -35,17 +48,3 @@ int maxProduct(vector<int>& nums) {
     return ans; // Return the maximum product found.
 }
 
-// optimal approach-2
-int maxProductSubArray(vector<int>& nums) {
-    int prod1 = nums[0],prod2 = nums[0],result = nums[0];
-    
-    for(int i=1;i<nums.size();i++) {
-        int temp = max({nums[i],prod1*nums[i],prod2*nums[i]});
-        prod2 = min({nums[i],prod1*nums[i],prod2*nums[i]});
-        prod1 = temp;
-        
-        result = max(result,prod1);
-    }
-    
-    return result;
-}
