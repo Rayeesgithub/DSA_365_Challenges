@@ -1,29 +1,73 @@
 //https://leetcode.com/problems/3sum/
-// striver sheet
-class Solution {
-public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        int n = nums.size(); // Size of the input vector
-        set<vector<int>> st; // Set to store unique triplets
+Example 1: 
+Input: nums = [-1,0,1,2,-1,-4]
+Output: [[-1,-1,2],[-1,0,1]]
+Explanation: Out of all possible unique triplets possible, [-1,-1,2] and [-1,0,1] satisfy the condition of summing up to zero with i!=j!=k
 
-        // Brute force approach
-        // Iterate over all possible triplets
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                for (int k = j + 1; k < n; k++) {
-                    // Check if the triplet sums to zero
-                    if (nums[i] + nums[j] + nums[k] == 0) {
-                        vector<int> temp = {nums[i], nums[j], nums[k]};
-                        // Sort the triplet to ensure uniqueness
-                        sort(temp.begin(), temp.end());
-                        // Insert the triplet into the set
-                        st.insert(temp);
-                    }
+
+
+
+
+
+
+    
+// approach1 Time Complexity: O(N^3) space=0(n)
+// Function to find all unique triplets whose sum = 0
+vector<vector<int>> threeSum(vector<int>& nums) {
+
+    int n = nums.size(); 
+    set<vector<int>> st;   // Set is used to avoid duplicate triplets
+
+    // -------------------------------------------
+    // Try all possible triplets using 3 nested loops
+    // -------------------------------------------
+    for (int i = 0; i < n; i++) {
+
+        for (int j = i + 1; j < n; j++) {
+
+            for (int k = j + 1; k < n; k++) {
+
+                // Check if the triplet sums to zero
+                if (nums[i] + nums[j] + nums[k] == 0) {
+
+                    // Store the triplet in a temporary vector
+                    vector<int> temp = {nums[i], nums[j], nums[k]};
+
+                    // Sorting ensures that {1,-1,0} and {0,1,-1} become same
+                    sort(temp.begin(), temp.end());
+
+                    // Insert sorted triplet (removes duplicates automatically)
+                    st.insert(temp);
                 }
             }
-            vector<vector<int>> ans(st.begin(), st.end());
-    return ans;
         }
+    }
+
+    // Convert set → vector for final answer
+    vector<vector<int>> ans(st.begin(), st.end());
+    return ans;
+}
+
+int main() {
+
+    vector<int> arr = {-1,0,1,2,-1,-4};
+
+    // Function call
+    vector<vector<int>> ans = threeSum(arr);
+
+    // -----------------------------------------
+    // Printing 2D vector (vector of triplets)
+    // -----------------------------------------
+    cout << "Triplets with sum = 0:\n";
+    for (auto triplet : ans) {
+        for (auto x : triplet) {
+            cout << x << " ";
+        }
+        cout << endl;
+    }
+}
+
+
 
 
 
@@ -39,6 +83,7 @@ public:
                     if(nums[i]+nums[j]+nums[k]==0){
                         vector<int>triplet={nums[i],nums[j],nums[k]};
                         sort(triplet.begin(),triplet.end());
+                        // nahi mila
                         if(find(ans.begin(),ans.end(),triplet)==ans.end()){
                             ans.push_back(triplet);
                         }
@@ -58,26 +103,8 @@ If triplet is new, we push it into ans using ans.push_back(triplet).
 
         
 
-        // Better approach
-        // Using a hashset to store seen elements
-        for(int i = 0; i < n; i++) {
-            set<int> hashset;
-            for(int j = i + 1; j < n; j++) {
-                int third = -(nums[i] + nums[j]);
-                // Check if the third element exists in the hashset
-                if(hashset.find(third) != hashset.end()) {
-                    vector<int> temp = {nums[i], nums[j], third};
-                    // Sort the triplet to ensure uniqueness
-                    sort(temp.begin(), temp.end());
-                    // Insert the triplet into the set
-                    st.insert(temp);
-                }
-                // Insert the current element into the hashset
-                hashset.insert(nums[j]);
-            }
-        }
 
-        // Optimal approach
+        // Optimal approach  Time Complexity: O(NlogN)+O(N2), space=(1)
         // Sort the array first to use two-pointer technique
         sort(nums.begin(), nums.end());
         vector<vector<int>> ans; // Vector to store the final result
