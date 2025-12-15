@@ -1,4 +1,9 @@
 // love babbar
+Input: s = "abba"
+Output: true
+Explanation: "abba" reads the same forwards and backwards,
+
+ 
 
 #include<iostream>
 using namespace std;
