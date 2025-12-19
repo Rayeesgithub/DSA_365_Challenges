@@ -52,6 +52,35 @@ bool isAnagram(string s, string t) {
 }
 
 
+Step 1: Count characters of s
+| Character | Count in map |
+| --------- | ------------ |
+| a         | 3            |
+| n         | 1            |
+| g         | 1            |
+| r         | 1            |
+| m         | 1            |
+
+   Step 2: Subtract characters of t
+Process "nagaram" one by one:
+| Char | Action  | Updated Count |
+| ---- | ------- | ------------- |
+| n    | mp[n]-- | 0             |
+| a    | mp[a]-- | 2             |
+| g    | mp[g]-- | 0             |
+| a    | mp[a]-- | 1             |
+| r    | mp[r]-- | 0             |
+| a    | mp[a]-- | 0             |
+| m    | mp[m]-- | 0             |
+Map after second loop:
+
+{ a:0, n:0, g:0, r:0, m:0 }
+Step 3: Final Check
+
+All values are 0 ✅
+→ Strings are anagrams
+
+
 
 // approach3
 // approach3->  T.C=0(n) & S.C=0(1)
