@@ -32,7 +32,7 @@ string reverseOnlyLetters(string s) {
         else if(!isalpha(s[j])) {
             j--;
         }
-        else {
+        else {  // if(isalpha(s[left]) && isalpha(s[right])){
             // Both are alphabets → swap them
             swap(s[i], s[j]);
             i++;
