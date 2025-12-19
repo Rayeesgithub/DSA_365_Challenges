@@ -3,6 +3,23 @@ Example 1:
 Input: strs = ["flower","flow","flight"]
 Output: "fl"
 
+    DryRun
+//🔹 Step 1: Sort the strings
+    sort(strs.begin(), strs.end());
+Before sorting:["flower", "flow", "flight"]
+After sorting (lexicographical order): ["flight", "flow", "flower"]
+    | i | first[i] | last[i] | Match? | ans  |
+| - | -------- | ------- | ------ | ---- |
+| 0 | 'f'      | 'f'     | ✅      | "f"  |
+| 1 | 'l'      | 'l'     | ✅      | "fl" |
+| 2 | 'i'      | 'o'     | ❌      | stop |
+
+    outptut->fl
+
+
+
+
+    
 string longestCommonPrefix(vector<string>& strs) {
 
     // Step 1: Sort the list of strings in lexicographical (dictionary) order
