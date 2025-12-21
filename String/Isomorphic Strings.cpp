@@ -5,41 +5,93 @@ Output: true
 Input: s = "foo", t = "bar"
 Output: false
     
-// Approach1   Time	O(n) — Single pass with constant check  &&  Space	O(1)
-bool isIsomorphic(string s, string t) {
+// Approach1   Time	O(n) — Single pass with constant check  &&  Space	On1)
 
-    // hash[] will store mapping: s[i] → t[i]
-    // isMap[] will check whether t[i] is already used for some mapping
-    int hash[256] = {0};
-    bool isMap[256] = {0};
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
 
-    // Traverse every character of both strings
-    for(int i = 0; i < s.size(); i++) {
-        
-        // If s[i] is not mapped yet AND t[i] is not taken yet
-        if(hash[s[i]] == 0 && isMap[t[i]] == false) {
-            
-            // Create mapping s[i] → t[i]
-            hash[s[i]] = t[i];
+        // Map to store the FIRST index where each character appears in string s
+        unordered_map<char, int> charIndexS;
 
-            // Mark t[i] as already mapped
-            isMap[t[i]] = true;
+        // Map to store the FIRST index where each character appears in string t
+        unordered_map<char, int> charIndexT;
+
+        // Traverse both strings together
+        for (int i = 0; i < s.length(); i++) {
+
+            // If character s[i] is appearing for the first time,
+            // store its index
+            if (charIndexS.find(s[i]) == charIndexS.end()) {
+                charIndexS[s[i]] = i;
+            }
+
+            // If character t[i] is appearing for the first time,
+            // store its index
+            if (charIndexT.find(t[i]) == charIndexT.end()) {
+                charIndexT[t[i]] = i;
+            }
+
+            // If the first occurrence index of s[i] and t[i]
+            // are not the same, pattern is broken
+            // → strings are NOT isomorphic
+            if (charIndexS[s[i]] != charIndexT[t[i]]) {
+                return false;
+            }
         }
+
+        // If all characters follow the same pattern
+        return true;        
     }
-
-    // Check if mapping is correct for all characters
-    for(int i = 0; i < s.size(); i++) {
-        
-        // If stored mapped character does NOT match expected t[i]
-        if(char(hash[s[i]]) != t[i]) {
-            return false;
-        }
-    }
-
-    return true; // All characters follow correct mapping → isomorphic
-}
+};
 
 
+
+    dry-Run-> s = "egg"
+             t = "add"
+charIndexS = {}
+charIndexT = {}
+✅ i = 0
+s[i] = 'e'
+t[i] = 'a'  
+Check in charIndexS:
+
+'e' not present → store , charIndexS['e'] = 0
+Check in charIndexT:
+
+'a' not present → store, charIndexT['a'] = 0
+Compare
+charIndexS['e'] == charIndexT['a']
+0 == 0  ✔
+
+✅ i = 1
+charIndexS['g'] = 1
+charIndexT['d'] = 1
+comapre ,1 == 1 ✔
+✅ i = 2
+s[i] = 'g'
+t[i] = 'd'
+Already present → no update
+charIndexS['g'] = 1
+charIndexT['d'] = 1
+comapre, 1 == 1 ✔
+
+end loop return true
+
+
+❌ Failure Case Dry Run
+s = "ab"
+t = "aa"
+charIndexS['a'] = 0
+charIndexT['a'] = 0
+0 == 0 ✔
+when i=1
+s[i] = 'b'
+t[i] = 'a'
+charIndexS['b'] = 1
+charIndexT['a'] = 0
+comapre->1 != 0 ❌ return false
+    
 // apprach2- Timen O(n)
 bool isIsomorphic(string s, string t) {
 
