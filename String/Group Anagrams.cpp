@@ -33,9 +33,12 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
 }
 
 
-| Word  | Sorted Key | Stored Under Key      |
-| ----- | ---------- | --------------------- |
-| "eat" | "aet"      | ["eat"]               |
-| "tea" | "aet"      | ["eat","tea"]         |
-| "bat" | "abt"      | ["bat"]               |
-| "ate" | "aet"      | ["eat", "tea", "ate"] |
+| Word | Sorted | Map Entry           |
+| ---- | ------ | ------------------- |
+| eat  | aet    | ["eat"]             |
+| tea  | aet    | ["eat","tea"]       |
+| tan  | ant    | ["tan"]             |
+| ate  | aet    | ["eat","tea","ate"] |
+| nat  | ant    | ["tan","nat"]       |
+| bat  | abt    | ["bat"]             |
+
