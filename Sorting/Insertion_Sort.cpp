@@ -3,7 +3,7 @@ Input:  nums = [7, 4, 1, 5, 3]
 Output:  [1, 3, 4, 5, 7]  
 
 
-
+Similar to sorting playing cards in your hand. It picks one element and inserts it into its correct position in the sorted part
 
  #include<bits/stdc++.h>
 using namespace std;
