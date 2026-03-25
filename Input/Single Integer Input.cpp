@@ -2,8 +2,19 @@
 Input->10
 int n;
 cin >> n;
+long long x; cin >> x;   // use for large numbers!(always prefer this)
+double d;    cin >> d;
+char c;      cin >> c;   // skips whitespace automatically
 
-<img width="623" height="262" alt="image" src="https://github.com/user-attachments/assets/7f95d50e-2636-4c51-bb2e-280faea02256" />
+### Always prefer long long over int when the problem says numbers up to 10^9 or more.
+
+✅ Types for Decimal Input
+| Type          | Precision                  | Example             |
+| ------------- | -------------------------- | ------------------- |
+| `float`       | ~6 decimal digits          | 3.14                |
+| `double`      | ~15 digits ✅ (recommended) | 3.14159265358979    |
+| `long double` | more precision             | very large decimals |
+
 
 
 Example
