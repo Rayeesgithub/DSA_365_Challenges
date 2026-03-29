@@ -111,9 +111,13 @@ int main() {
     getline(cin, s);
 
     vector<int> arr;
-    string temp;
+    string temp; // to store each split part
 
     stringstream ss(s);
+    
+    // getline(ss, temp, ',') →
+   // splits string using ',' as delimiter
+   // Example: "1,2,3" → "1", "2", "3"
     while(getline(ss, temp, ',')) {
         arr.push_back(stoi(temp));
     }
