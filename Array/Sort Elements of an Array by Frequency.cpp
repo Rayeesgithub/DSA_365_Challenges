@@ -58,3 +58,45 @@ int main() {
     return 0;
 
 }
+
+
+
+//2nd approach
+Input: N = 8, array[] = {1,2,3,2,4,3,1,2}
+Output: 2 2 2 1 1 3 3 4 
+
+
+
+void solve(vector<int>& arr){
+
+   // unordered_map → stores frequency of each element
+   // key = element, value = count
+   unordered_map<int,int> mp;
+
+   // Step 1: count frequency
+   for(int i = 0; i < arr.size(); i++){
+      mp[arr[i]]++;   // increase frequency of element
+   }
+
+   // Step 2: custom comparator (lambda function)
+   // used to decide sorting order
+   auto cmp = [&](int a, int b){
+
+      // if frequency is different
+      // element with higher frequency should come first
+      if(mp[a] != mp[b]) 
+         return mp[a] > mp[b];
+
+      // if frequency is same
+      // smaller element should come first
+      return a < b;
+   };
+
+   // Step 3: sort array using custom comparator
+   sort(arr.begin(), arr.end(), cmp);
+
+   // Step 4: print sorted array
+   for(auto it : arr){
+      cout << it << " ";
+   }
+}
