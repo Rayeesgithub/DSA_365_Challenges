@@ -24,22 +24,27 @@ int main() {
 
     // -------------------------
     // APPROACH 1: Using set
-    // -------------------------
-    // set stores only unique elements (automatically removes duplicates)
-    // also stores them in sorted order
-    set<int> st;
+    int main(){
 
-    // Insert all array elements into set
-    for (int i = 0; i < n; i++) {
-        st.insert(arr[i]);   // duplicates automatically ignored
+    vector<int> arr = {2,3,1,9,3,1,3,9};
+
+    unordered_set<int> seen;   // to track visited elements
+    vector<int> result;
+
+    for(int x : arr){
+
+        // if element not seen before
+        if(seen.find(x) == seen.end()){
+            result.push_back(x);  // keep it
+            seen.insert(x);       // mark as seen
+        }
     }
 
-    // Print unique elements
-    cout << "Approach 1 Output: ";
-    for (auto it : st) {
-        cout << it << " ";   // elements printed in sorted order
+    // print result
+    for(int x : result){
+        cout << x << " ";
     }
-    cout << endl;
+}
 
 
     // -------------------------
