@@ -44,6 +44,22 @@ n = 5
 s = Hello World ✅
 ⭐ Rule: Always add cin.ignore() before getline if you used cin >> before it.
 
+
+ ### 🟥 multiple input
+   // string with space lena hai
+  string s;
+    getline(cin, s);   // reads: "CAT, ACT"
+
+    stringstream ss(s);
+
+    string a, b;
+
+    // split using comma
+    getline(ss, a, ',');   // "CAT"
+    getline(ss, b, ',');   // " ACT"
+
+
+
 case2-> Multiple lines of strings
 input:   3  →  Hello  →  World  →  Bye
 int n; cin >> n;
