@@ -1,3 +1,41 @@
+void solve(string & str){
+ int count=0;
+ string temp="";
+
+ for(int i=0; i<str.size(); i++){
+    if(str[i]!=' '){
+        temp+=str[i];
+    }
+
+    else {
+        count++;
+        temp="";
+    }
+ }
+ if(!temp.empty()){
+    count++;
+ }
+
+ cout<<"Number of words:"<<count;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 #include<bits/stdc++.h>
 using namespace std;
