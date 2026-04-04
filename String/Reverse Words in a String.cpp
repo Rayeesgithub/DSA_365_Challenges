@@ -10,37 +10,37 @@ Input: s = "  hello world  "
 Output: "world hello"
 broute force
 
-string reverseWords(string s) {
+void solve(string &str){
     stack<string> st;
-    string word = "";
 
-    // Step 1: Extract words and push to stack
-    for(int i = 0; i < s.size(); i++) {
-        if(s[i] != ' ') {
-            word += s[i];  // build current word
-        } 
-        else {
-            if(word != "") { // if a word is formed
-                st.push(word);
-                word = "";   // reset for next word
+    string temp = "";
+
+    for(int i = 0; i < str.size(); i++){
+
+        if(str[i] == ' '){
+            if(!temp.empty()){
+                st.push(temp);
+                temp = "";
             }
+        }
+        else{
+            temp += str[i];
         }
     }
 
-    // Push last word (if available)
-    if(word != "") st.push(word);
-
-    // Step 2: Pop from stack and form result
-    string res = "";
-    while(!st.empty()) {
-        res += st.top();
-        st.pop();
-        if(!st.empty()) res += " "; // add space between words
+    // last word
+    if(!temp.empty()){
+        st.push(temp);
     }
 
-    return res;
-}
+    // print in reverse order
+    while(!st.empty()){
+        cout << st.top();
+        st.pop();
 
+        if(!st.empty()) cout << " ";  // avoid extra space
+    }
+}
 
 
 📌 How it works behind the scene?
@@ -49,52 +49,33 @@ Extract words	i, love, you
 Stack (top → bottom)	you → love → i
 Pop + Build	"you love i"
 
+Time:
+👉 O(n) — traverse string once
 
+Space:
+👉 O(n) — stack stores words
 
  
 
-class Solution {
-public:
-    string reverseWords(string s) {
 
-        int left = 0; 
-        int right = s.size() - 1;
+#include<bits/stdc++.h>
+using namespace std;
 
-        string temp = "";  // will store a single word while scanning
-        string ans = "";   // final reversed result
+void solve(string &s){
 
-        // Step 1 → Traverse the string from left to right
-        while (left <= right) {
+    // Step 1: reverse whole string
+    reverse(s.begin(), s.end());
 
-            char ch = s[left];  // take current character
+    int start = 0;
 
-            // If character is NOT space → build the current word
-            if (ch != ' ') {
-                temp += ch;
-            }
-            // If space is found AND temp has a word → add it into ans (reversed order)
-            else if (ch == ' ' && !temp.empty()) {
+    // Step 2: reverse each word
+    for(int i = 0; i <= s.size(); i++){
 
-                // If ans already has words → insert current word before ans
-                // so that order becomes reversed
-                if (!ans.empty()) 
-                    ans = temp + " " + ans;
-                else 
-                    ans = temp;  // First word goes directly
-
-                temp = ""; // reset for next word
-            }
-            left++;
+        if(i == s.size() || s[i] == ' '){
+            reverse(s.begin() + start, s.begin() + i);
+            start = i + 1;
         }
-
-        // Step 2 → For the last stored word (if not followed by space)
-        if (!temp.empty()) {
-            if (!ans.empty()) 
-                ans = temp + " " + ans;
-            else 
-                ans = temp;
-        }
-
-        return ans;
     }
-};
+
+    cout << s;
+}
