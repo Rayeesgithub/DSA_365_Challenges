@@ -175,3 +175,44 @@ int main() {
 
     for(string w : words) cout << w << endl;
 }
+
+
+
+
+### 6 Two array in string form
+arr1=[1,2,3,4,5]
+arr2=[3,4,5,6,7]
+
+vector<int>parse(string &str){
+
+   for(char &c: str){
+      if(c=='[' || c==']' || c==',' ){
+         c=' ';
+      }
+   }
+
+   stringstream ss(str);
+   vector<int>arr;
+   int num;
+
+   while(ss>>num){
+      arr.push_back(num);
+   }
+   return arr;
+}
+int main(){
+   // string with space lena hai
+  
+   string str1,str2;
+   getline(cin,str1);
+   getline(cin,str2);
+
+   vector<int>arr1=parse(str1);
+   vector<int>arr2=parse(str2);
+    cout<<"printing:";
+   for(int i=0; i<arr1.size(); i++){
+    cout<<arr1[i]<<" ";
+   }
+   
+
+}
