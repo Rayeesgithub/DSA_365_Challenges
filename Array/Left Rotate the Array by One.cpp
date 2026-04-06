@@ -56,6 +56,23 @@ vector<int> rotateArray(vector<int>& arr, int n) {
 }
 
 
+
+/// 3rd approach
+void solve(vector<int>&arr){
+ int n=arr.size();
+
+ reverse(arr.begin(),arr.end());
+
+ reverse(arr.begin(),arr.end()-1);
+ for(auto it:arr){
+   cout<<it<<" ";
+   
+ }
+// cout<<maxi;
+}
+
+
+
 int main(){
   int arr[]={1,2,3,4,5};
   int n=sizeof(arr)/sizeof(arr[0]);
