@@ -23,6 +23,28 @@ rotate 2 steps to the left: [3, 4, 5, 6, 1, 2]
 }
 
 
+// another approach
+void solve(vector<int>& arr, int k){
+    int n = arr.size();
+    k = k % n;
+
+    // Step 1: reverse first k elements
+    reverse(arr.begin(), arr.begin() + k);
+
+    // Step 2: reverse remaining elements
+    reverse(arr.begin() + k, arr.end());
+
+    // Step 3: reverse whole array
+    reverse(arr.begin(), arr.end());
+}
+
+⏱️ Complexity
+Time: O(n)
+Space: O(1) ✅ (optimal)
+
+
+
+
 //apprach-2
 vector<int> rotateLeft(vector<int>& nums, int k) {
     int n = nums.size();
