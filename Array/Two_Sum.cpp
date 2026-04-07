@@ -1,9 +1,10 @@
 //https://leetcode.com/problems/two-sum/
 //striver sheet
-class Solution {
-public:
+Input: N = 5, arr[] = {2,6,5,8,11}, target = 14
+     
      // approach1-broute force Time Complexity: O(N2), Space Complexity: O(1)
-   vector<int> twoSum(vector<int>& nums, int target) {
+
+vector<int> twoSum(vector<int>& nums, int target) {
 
     int n = nums.size();        // size of array
     vector<int> ans;            // to store result indices
@@ -28,12 +29,15 @@ public:
 
 
          
-         //approach2
-         approach1-broute force Time Complexity: O(N), Space Complexity: O(1)
+ //approach2
+ approach1-broute force Time Complexity: O(Nlogn), Space Complexity: O(1)
+ // ✅ 👉 Works only if array is sorted
+
  #include <bits/stdc++.h>
 using namespace std;
 
 vector<int> twoSum(vector<int>& arr, int target) {
+     sort(arr.begin(),arr.end());
     int left = 0;
     int right = arr.size() - 1;
 
@@ -58,6 +62,7 @@ vector<int> twoSum(vector<int>& arr, int target) {
 
 
     //3rd approach
+//If array is NOT sorted (best approach)
  
 
 vector<int> twoSum(int n, vector<int> &arr, int target) {
@@ -66,15 +71,14 @@ vector<int> twoSum(int n, vector<int> &arr, int target) {
 
     for (int i = 0; i < n; i++) {
 
-        int num = arr[i];           // current value
-        int first = target - num;   // the value we need to find
+        int need = target - arr[i];   // the value we need to find
 
         // If complement exists in map → we found the pair
-        if (mp.find(first) != mp.end()) {
-            return { mp[first], i };   // return indices
+        if (mp.find(need) != mp.end()) {
+            return { mp[need], i };   // return indices
         }
 
-        mp[num] = i;   // store current number with index
+        mp[arr] = i;   // store current number with index
     }
 
     return { -1, -1 };   // if no pair exists
