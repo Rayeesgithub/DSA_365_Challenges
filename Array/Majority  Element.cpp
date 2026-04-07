@@ -33,7 +33,10 @@ int majorityElement(vector<int>& nums) {
 
       
        
-    // Approach 2: (Time = O(n), Space = O(n))
+    // Approach 2: 
+⏱️ Complexity
+Time → O(n)
+Space → O(n))
       
           int mid = nums.size() / 2; 
     unordered_map<int, int> mp;   // Stores element → frequency
