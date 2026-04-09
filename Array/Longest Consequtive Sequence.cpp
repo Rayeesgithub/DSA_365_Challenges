@@ -13,36 +13,31 @@ Output: 9
 // Time = O(n log n) because of sorting
 // This approach finds the Longest Consecutive Sequence
 
-int LongConsecutive(int arr[], int n) {
+void solve(vector<int>& arr){
+    int n = arr.size();
+    if(n == 0) return;
 
-    // Step 1: Sort the array so consecutive numbers come together
-    sort(arr, arr + n);
+    sort(arr.begin(), arr.end());
 
-    int count = 0;          // counts current consecutive streak
-    int maxLength = 1;      // stores the best (maximum) streak
-    int lastSmaller = INT_MIN;  // keeps last valid consecutive element
+    int longest = 1;
+    int count = 1;
 
-    for (int i = 0; i < n; i++) {
+    for(int i = 1; i < n; i++){
 
-        // Case 1: Current element continues the chain
-        // Example: lastSmaller = 4 → arr[i] = 5 (5 - 1 == 4)
-        if (arr[i] - 1 == lastSmaller) {
-            count++;               
-            lastSmaller = arr[i];  
+        if(arr[i] == arr[i-1]){
+            continue;   // skip duplicates
+        }
+        else if(arr[i] == arr[i-1] + 1){
+            count++;    // consecutive
+        }
+        else{
+            count = 1;  // reset
         }
 
-        // Case 2: Duplicate value → ignore it  
-        // Example: arr = [1,1,2,3] → when arr[i] == lastSmaller → skip
-        else if (arr[i] != lastSmaller) {
-            count = 1;              // restart new sequence
-            lastSmaller = arr[i];
-        }
-
-        // Update maximum sequence length
-        maxLength = max(maxLength, count);
+        longest = max(longest, count);
     }
 
-    return maxLength;
+    cout << longest;
 }
 
 
