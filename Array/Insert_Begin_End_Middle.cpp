@@ -1,26 +1,28 @@
 //striver NQT
 
-#include<bits/stdc++.h>
-using namespace std;
-void InserAtbegin(int* arr,int n,int value){
-   for(int i=n-1;i>=0;i--)
-    {
-        arr[i+1]=arr[i];
+ vector<int> insertAtBeginning(vector<int>& arr, int x) {
+        // Insert x at index 0
+        arr.insert(arr.begin(), x);
+        return arr;
     }
-    arr[0]=value;
-}
-void insertatEnd(int *arr, int n, int value)
-{
-    arr[n] = value;
-}
-void insertatposition(int *arr, int n, int value, int pos)
-{
-    for (int i = n; i >= pos; i--)
-    {
-        arr[i] = arr[i - 1];
+
+  vector<int> insertAtEnd(vector<int>& arr, int x) {
+        // Push element at the back
+        arr.push_back(x);
+        return arr;
     }
-    arr[pos - 1] = value;
-}
+
+  vector<int> insertAtPosition(vector<int>& arr, int pos, int x) {
+        // Insert x at index = pos
+        arr.insert(arr.begin() + pos, x);
+        return arr;
+    }
+
+
+
+
+
+
 int main() {
    int n=8;
    int arr[n]={2,3,1,9,3,1,3,9};
