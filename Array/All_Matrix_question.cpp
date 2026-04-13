@@ -1,3 +1,25 @@
+### 1.🟥 Transpose of Matrix
+Input: mat[][] = [[1, 1, 1, 1],
+                [2, 2, 2, 2],
+                [3, 3, 3, 3],
+                [4, 4, 4, 4]]
+
+    Output: [[1, 2, 3, 4],
+       [1, 2, 3, 4],
+       [1, 2, 3, 4],
+       [1, 2, 3, 4]]
+
+- code
+    for(int i=0;i<n;i++){
+    for(int j=i+1;j<n;j++){
+        swap(mat[i][j], mat[j][i]);
+    }
+}
+
+
+  
+### 2. 🟥 Rotate Image by 90 degree in clockwise
+
 https://leetcode.com/problems/rotate-image/
 Input: [[1,2,3],[4,5,6],[7,8,9]]
 
@@ -121,3 +143,105 @@ Row 2:
 7 4 1
 8 5 2
 9 6 3
+
+
+### 3. 🟥 Rotate a matrix by 90 degrees in an anticlockwise direction
+🔷 Input
+[
+ [1,2,3],
+ [4,5,6],
+ [7,8,9]
+]
+
+🔷 Final Output
+[
+ [3,6,9],
+ [2,5,8],
+ [1,4,7]
+]
+
+int main(){
+    int n; int m;
+    int arr[n][m]={[1, 2, 3], [4, 5, 6], [7, 8, 9]}
+
+    // Step 1: Transpose
+    for(int i=0; i<n; i++){
+        for(int j=i+1; j<n; j++){
+            swap(arr[i][j],arr[j][i]);
+        }
+    }
+
+    // Step 2: Reverse Columns
+    for(int j=0; j<m; j++){
+      int top=0; int bottom=n-1;
+      while(top<bottom){
+         swap(arr[top][j],arr[bottom][j]);
+         top++;  bottom--;
+      }
+    }
+     for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+           cout<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+  
+}
+
+
+### 4. 🟥 Reverse each row of matrix
+
+Input: arr[][] = 
+{ {1, 2, 3},
+  {4, 5, 6},
+  {7, 8, 9} }
+Output:
+3 2 1
+6 5 4
+9 8 7
+
+  
+    // row reverse 
+
+    for(int i=0; i<n; i++){
+       reverse(arr[i].begin(),arr[i].end());
+       
+    }
+  
+  
+     for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+           cout<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+
+### 5. 🟥 reverse  each columns
+Input: arr[][] =  {{3, 2, 1}
+                          {4, 5, 6},
+                          {9, 8, 7}}
+     Output:  9 8 7
+              4 5 6
+              3 2 1
+
+           
+    // column reverse
+
+    for(int i=0; i<m; i++){
+        int top=0; int bottom=n-1;
+       while(top<bottom){
+         swap(arr[top][i],arr[bottom][i]);
+        top++; bottom--;
+       }
+    }
+
+    
+  
+     for(int i=0; i<n; i++){
+        for(int j=0; j<m; j++){
+           cout<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+  
