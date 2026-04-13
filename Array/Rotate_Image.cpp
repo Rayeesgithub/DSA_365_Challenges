@@ -107,6 +107,17 @@ after Transpose
 2 5 8
 3 6 9
 After Reversing Each Row
+for(int i=0; i<n; i++){
+    reverse(arr[i].begin(), arr[i].end());
+}
+🔷 Dry Run
+Row 0:
+[1,4,7] → [7,4,1]
+Row 1:
+[2,5,8] → [8,5,2]
+Row 2:
+[3,6,9] → [9,6,3]
+🔷 Final Matrix
 7 4 1
 8 5 2
 9 6 3
