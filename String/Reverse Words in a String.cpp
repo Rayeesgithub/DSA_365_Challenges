@@ -14,26 +14,22 @@ void solve(string &str){
     stack<string> st;
 
     string temp = "";
-
-    for(int i = 0; i < str.size(); i++){
+ for(int i = 0; i < str.size(); i++){
 
         if(str[i] == ' '){
             if(!temp.empty()){
                 st.push(temp);
                 temp = "";
-            }
-        }
+            } }
         else{
             temp += str[i];
         }
     }
-
     // last word
     if(!temp.empty()){
         st.push(temp);
     }
-
-    // print in reverse order
+ // print in reverse order
     while(!st.empty()){
         cout << st.top();
         st.pop();
@@ -58,28 +54,53 @@ Space:
  
 
 
-#include<bits/stdc++.h>
-using namespace std;
+string reverseWords(string s) {
+    
+    // Input:
+    // s = "welcome to the jungle"
 
-void solve(string &s){
+    stringstream ss(s);
+    vector<string> words;
+    string word;
 
-    // Step 1: reverse whole string
-    reverse(s.begin(), s.end());
+    // Step 1: Extract words
+    while(ss >> word){
+        // Iteration 1 → word = "welcome"
+        // words = ["welcome"]
 
-    int start = 0;
+        // Iteration 2 → word = "to"
+        // words = ["welcome", "to"]
 
-    // Step 2: reverse each word
-    for(int i = 0; i <= s.size(); i++){
+        // Iteration 3 → word = "the"
+        // words = ["welcome", "to", "the"]
 
-        if(i == s.size() || s[i] == ' '){
-            reverse(s.begin() + start, s.begin() + i);
-            start = i + 1;
-        }
+        // Iteration 4 → word = "jungle"
+        // words = ["welcome", "to", "the", "jungle"]
+
+        words.push_back(word);
     }
 
-    cout << s;
-}
+    // Step 2: Reverse words
+    reverse(words.begin(), words.end());
 
-⏱️ Complexity
-Time: O(n)
-Space: O(1) ✅ (best)
+    // words = ["jungle", "the", "to", "welcome"]
+
+    // Step 3: Join words
+    string result = "";
+
+    for(string w : words){
+        // Iteration 1 → result = "jungle "
+        // Iteration 2 → result = "jungle the "
+        // Iteration 3 → result = "jungle the to "
+        // Iteration 4 → result = "jungle the to welcome "
+
+        result += w + " ";
+    }
+
+    // Remove last extra space
+    result.pop_back();
+
+    // Final result = "jungle the to welcome"
+
+    return result;
+}
