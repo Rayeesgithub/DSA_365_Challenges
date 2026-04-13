@@ -119,7 +119,7 @@ Row 2 becomes:
         // Second pass: set the elements to zero based on the sets
         for (int i = 0; i < n; i++) {       // Iterate through each row
             for (int j = 0; j < m; j++) {   // Iterate through each column
-                if (setRows.count(i) > 0 || setColumns.count(j) > 0) { // Check if the row or column is in the set
+                if (setRows.count(i)  || setColumns.count(j) ) { // Check if the row or column is in the set
                     matrix[i][j] = 0; // Set the element to zero
                 }
             }
@@ -127,3 +127,72 @@ Row 2 becomes:
     }
     
 };
+
+
+🔴DRY RUN
+Input: matrix =
+[
+ [0,1,2,0],
+ [3,4,5,2],
+ [1,0,1,5]
+]
+🔶 STEP 1: Find all zero positions
+| i | j | value | Action   |
+| - | - | ----- | -------- |
+| 0 | 0 | 0     | ✅ insert |
+| 0 | 1 | 1     | -        |
+| 0 | 2 | 2     | -        |
+| 0 | 3 | 0     | ✅ insert |
+| 1 | 0 | 3     | -        |
+| 1 | 1 | 4     | -        |
+| 1 | 2 | 5     | -        |
+| 1 | 3 | 2     | -        |
+| 2 | 0 | 1     | -        |
+| 2 | 1 | 0     | ✅ insert |
+| 2 | 2 | 1     | -        |
+| 2 | 3 | 5     | -        |
+
+🔷 After Step 1:
+rows = {0, 2}
+cols = {0, 1, 3}
+
+👉 Meaning:
+
+Rows to zero → 0 and 2
+Columns to zero → 0, 1, 3
+
+🔶 STEP 2: Update matrix
+🔷 i = 0
+
+Since rows.count(0) = 1 ✅
+👉 Entire row becomes 0
+  [0,0,0,0]
+
+🔷 i = 1
+
+Check each column:
+
+j = 0
+cols.count(0)=1 ✅ → 0
+j = 1
+cols.count(1)=1 ✅ → 0
+j = 2
+rows.count(1)=0 AND cols.count(2)=0 → keep 5
+j = 3
+cols.count(3)=1 ✅ → 0
+
+👉 Row becomes:
+
+[0,0,5,0]
+🔷 i = 2
+
+Since rows.count(2) = 1 ✅
+👉 Entire row becomes 0
+
+[0,0,0,0]
+🔷 Final Output
+[
+ [0,0,0,0],
+ [0,0,5,0],
+ [0,0,0,0]
+]
