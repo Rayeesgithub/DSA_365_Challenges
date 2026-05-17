@@ -4,6 +4,7 @@ Explanation: Sum of all the elements is 1+2+3+4+5 = 15
 
 
   // approach1  time=Time Complexity: O(N ) && space=0(1)
+  // PATTERN-> Array Traversal & Searching
   int arraySum(vector<int>& arr) {
         // Initialize sum variable
         int sum = 0;
