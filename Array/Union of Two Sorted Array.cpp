@@ -73,71 +73,76 @@ vector<int> FindUnion(int arr1[], int arr2[], int n, int m) {
 
 
 
-// Two pointer approach  Time Compleixty : O( (m+n)) && Space Complexity : O(1)
-vector<int> findUnion(int arr1[], int arr2[], int n, int m) {
+//PATTERN->  Two pointer approach  
+// Time Compleixty : O( (m+n)) && Space Complexity : O(m+n)
 
-    int i = 0, j = 0;                // Two pointers
-    vector<int> ans;
+#include <bits/stdc++.h>
+using namespace std;
 
-    // Traverse both arrays until one finishes
-    while (i < n && j < m) {
+class Solution {
+public:
+    // Function to find union of two sorted arrays using two pointers
+    vector<int> findUnion(int arr1[], int arr2[], int n, int m) {
+        // Vector to store union elements
+        vector<int> Union;
 
-        // Skip duplicate elements in arr1
-        if (i > 0 && arr1[i] == arr1[i - 1]) {
+        // Initialize two pointers for both arrays
+        int i = 0, j = 0;
+
+        // Loop until either pointer reaches the end
+        while (i < n && j < m) {
+            // If current element in arr1 is smaller
+            if (arr1[i] < arr2[j]) {
+                // Add element if union empty or different from last added
+                if (Union.empty() || Union.back() != arr1[i])
+                    Union.push_back(arr1[i]);
+                i++;  // Move pointer in arr1
+            }
+            // If current element in arr2 is smaller
+            else if (arr2[j] < arr1[i]) {
+                // Add element if union empty or different from last added
+                if (Union.empty() || Union.back() != arr2[j])
+                    Union.push_back(arr2[j]);
+                j++;  // Move pointer in arr2
+            }
+            else {
+                // Elements are equal, add once if not duplicate
+                if (Union.empty() || Union.back() != arr1[i])
+                    Union.push_back(arr1[i]);
+                i++; j++;  // Move both pointers
+            }
+        }
+
+        // Append remaining elements from arr1
+        while (i < n) {
+            if (Union.empty() || Union.back() != arr1[i])
+                Union.push_back(arr1[i]);
             i++;
-            continue;
         }
 
-        // Skip duplicate elements in arr2
-        if (j > 0 && arr2[j] == arr2[j - 1]) {
-            j++;
-            continue;
-        }
-
-        // If arr1 element is smaller → push it
-        if (arr1[i] < arr2[j]) {
-            ans.push_back(arr1[i]);
-            i++;
-        }
-
-        // If arr2 element is smaller → push it
-        else if (arr1[i] > arr2[j]) {
-            ans.push_back(arr2[j]);
+        // Append remaining elements from arr2
+        while (j < m) {
+            if (Union.empty() || Union.back() != arr2[j])
+                Union.push_back(arr2[j]);
             j++;
         }
 
-        // Both equal → push only once
-        else {
-            ans.push_back(arr1[i]);
-            i++;
-            j++;
-        }
+        // Return the final union vector
+        return Union;
     }
-
-    // Add remaining elements of arr1
-    while (i < n) {
-        if (i == 0 || arr1[i] != arr1[i - 1])   // ensure no duplicate
-            ans.push_back(arr1[i]);
-        i++;
-    }
-
-    // Add remaining elements of arr2
-    while (j < m) {
-        if (j == 0 || arr2[j] != arr2[j - 1])   // ensure no duplicate
-            ans.push_back(arr2[j]);
-        j++;
-    }
-
-    return ans;
-}
+};
 
 int main() {
-  int n = 10, m = 7;
-  int arr1[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  int arr2[] = {2, 3, 4, 4, 5, 11, 12};
-  vector < int > Union = FindUnion(arr1, arr2, n, m);
-  cout << "Union of arr1 and arr2 is " << endl;
-  for (auto & val: Union)
-    cout << val << " ";
-  return 0;
+    int arr1[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int arr2[] = {2, 3, 4, 4, 5, 11, 12};
+    int n = 10, m = 7;
+
+    Solution obj;
+    vector<int> result = obj.findUnion(arr1, arr2, n, m);
+
+    cout << "Union of arr1 and arr2 is: ";
+    for (int val : result) cout << val << " ";
+    return 0;
+}
+
 }
