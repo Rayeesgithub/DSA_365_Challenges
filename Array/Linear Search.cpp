@@ -4,8 +4,8 @@ Output: 2  `
 Explanation: 3 is present at the 2nd index of the array.
 
 
-
-Time=0(n) && space=0(1)
+// PATTERN-> Array Traversal & Searching
+// Time=0(n) && space=0(1)
     
 int search(int arr[], int n, int target)
 {
