@@ -4,8 +4,9 @@ Output: 5
 Explanation:  
 5 is the largest element in the array.
 
-  //1st approach  
-  Time=nlog(n) space=0(1)
+  //1st approach  // Broute force  
+  // Time=nlog(n) space=0(1)
+
 int sortArr(vector<int>& arr) {
     // Sort the array in ascending order
     sort(arr.begin(), arr.end());
@@ -16,8 +17,9 @@ int sortArr(vector<int>& arr) {
 
 
  
-  // 2nd approach
-  Time=0(N) space=0(1)
+  // 2nd approach-> 
+// Pattern-> Array Traversal & Searching
+//  Time=0(N) space=0(1)
 
 int largest(vector<int> &arr, int n)
 {
