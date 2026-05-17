@@ -57,7 +57,8 @@ vector<int> rotateArray(vector<int>& arr, int n) {
 
 
 
-/// 3rd approach
+/// 3rd approach -> broute force
+// T.C->O(nlogn)
 void solve(vector<int>&arr){
  int n=arr.size();
 
