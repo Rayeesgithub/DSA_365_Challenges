@@ -10,7 +10,8 @@ Hence, the second smallest element is 2, and the second largest element is 5.
 
 
 // apprach 1
-Time=O(n) + O(n) = O(n)  && space= O(1)
+// PATTEN-> Array Traversal & Searching
+//Time=O(n) + O(n) = O(n)  && space= O(1)
 
 void getElements(int arr[], int n)
 {
