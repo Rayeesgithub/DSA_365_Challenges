@@ -58,23 +58,21 @@ int main() {
 
 
 //  approach 3
-Time->  O(n) && space=O(1)
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-        // If the array is empty, return 0
-        if (nums.size() == 0) return 0;
-
-        int i = 0;  // Pointer to place unique elements
-
-        // Start loop from the second element
-        for (int j = 1; j < nums.size(); j++) {
-            // If the current element is different from the last unique one
-            if (nums[j] != nums[i]) {
-                i++;              // Move the unique index forward
-                nums[i] = nums[j]; // Copy current unique value to the correct position
-            }
+// PATTERN-> Same Direction Template(Two pointer)
+//Time->  O(n) && space=O(1)
+int removeDuplicates(vector<int>& arr) {
+    if(arr.size() == 0) return 0;
+    
+    int slow = 1;                    // Start from second element
+    
+    for(int fast = 1; fast < arr.size(); fast++) {
+        if(arr[fast] != arr[fast-1]) {   // Different from previous
+            arr[slow] = arr[fast];
+            slow++;
         }
+    }
+    return slow;   // New length of array
+}
 
         // The number of unique elements is (i + 1)
         return i + 1;
