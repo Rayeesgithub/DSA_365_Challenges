@@ -26,7 +26,8 @@ bool isSorted(int arr[], int n) {
 
 
 // optimal Approach
-Time Complexity: O(N), space=0(1)
+// PATTERN-> Array Traversal & Searching
+// Time Complexity: O(N), space=0(1)
 
 // Function to check if the array is sorted
 bool isSorted(int arr[], int n) {
