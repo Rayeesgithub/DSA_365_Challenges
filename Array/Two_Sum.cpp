@@ -32,7 +32,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
  //approach2
  approach1-broute force Time Complexity: O(Nlogn), Space Complexity: O(1)
  // ✅ 👉 Works only if array is sorted
-
+// Pattern-> Two Pointer
  #include <bits/stdc++.h>
 using namespace std;
 
@@ -63,7 +63,7 @@ vector<int> twoSum(vector<int>& arr, int target) {
 
     //3rd approach
 //If array is NOT sorted (best approach)
- 
+ // PATTERN-> Hashmap
 
 vector<int> twoSum(int n, vector<int> &arr, int target) {
 
