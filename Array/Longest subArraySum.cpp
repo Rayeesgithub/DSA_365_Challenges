@@ -33,6 +33,9 @@ int lenOfLongSubarr(int A[],  int N, int K)
     //   return len;
     
 
+
+// Better apparaoch
+// PATTERN-> Prefixsum + Hashmap
 // two Pointer
 #include<bits/stdc++.h>
 using namespace std;
