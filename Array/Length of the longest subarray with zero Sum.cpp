@@ -42,34 +42,42 @@ int maxLength(vector<int>& arr) {
 //optimal
 Time Complexity: O(n) && Space Complexity: O(n)
 
-int maxLength(vector<int>& arr) {
+#include<iostream>
+#include<vector>
+#include<unordered_map>
+using namespace std;
 
-    int maxi = 0;                     // Stores longest zero-sum subarray
-    unordered_map<int, int> mp;       // Stores first index where a prefix sum appears
-    int sum = 0;                      // Running prefix sum
-
+int longestSubarrayWithZeroSum(vector<int>& arr) {
+    unordered_map<int, int> mp;   // prefixSum -> first index
+    int prefixSum = 0;
+    int maxLen = 0;
+    
     for(int i = 0; i < arr.size(); i++) {
-
-        sum += arr[i];                // Update prefix sum
-
-        // CASE 1: Entire subarray from 0 to i has sum = 0
-        if(sum == 0) {
-            maxi = i + 1;
+        prefixSum += arr[i];
+        
+        // Case 1: Subarray from start to i has sum 0
+        if(prefixSum == 0) {
+            maxLen = i + 1;
         }
-
-        // CASE 2: Prefix sum seen before
-        // Means subarray (previousIndex+1 to i) has sum = 0
-        else if(mp.find(sum) != mp.end()) {
-
-            int len = i - mp[sum];    // Length of zero-sum subarray
-            maxi = max(maxi, len);    // Update max length
+        
+        // Case 2: Same prefixSum seen before
+        if(mp.find(prefixSum) != mp.end()) {
+            int prevIndex = mp[prefixSum]; //This line is fetching the index where we previously saw the same prefix sum.
+            maxLen = max(maxLen, i - prevIndex);
         }
-
-        // CASE 3: First time this prefix sum occurs → store index
         else {
-            mp[sum] = i;
+            // Store only the first occurrence
+            mp[prefixSum] = i;
         }
     }
-
-    return maxi;
+    return maxLen;
 }
+
+// Driver Code
+int main() {
+    vector<int> arr = {9, -3, 3, -1, 6, -5};
+    cout << "Longest Subarray Length with Sum 0: " 
+         << longestSubarrayWithZeroSum(arr) << endl;
+    return 0;
+}
+
