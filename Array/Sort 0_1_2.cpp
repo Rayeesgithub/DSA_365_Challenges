@@ -52,50 +52,50 @@ public:
 
 
           
-        // Approach 3: Dutch National Flag Algorithm (Optimal solution)  Time Complexity: O(N),Space Complexity: O(1) 
-      int s = 0, md = 0, end = nums.size() - 1;
+ // Approach 3: Dutch National Flag Algorithm (Optimal solution)  Time Complexity: O(N),Space Complexity: O(1) 
+     
 
 // 3 pointers:
-// s   → position where next 0 should go
-// md  → current pointer scanning the array
+// low   → position where next 0 should go
+// mid  → current pointer scanning the array
 // end → position where next 2 should go
 
 // Loop until md crosses end
-while (md <= end) {
+#include <vector>
+#include <algorithm>
+using namespace std;
 
-    // CASE 1 → Current element is 0
-    if (nums[md] == 0) {
-
-        // Swap current element with the element at 's'
-        swap(nums[s], nums[md]);
-
-        s++;       // move zero-section forward
-        md++;      // move mid forward (processed)
-    } 
-
-    // CASE 2 → Current element is 1
-    else if (nums[md] == 1) {
-
-        // 1 is already in correct middle zone → just skip
-        md++;      // just move forward
-    } 
-
-    // CASE 3 → Current element is 2
-    else if (nums[md] == 2) {
-
-        // swap current element with 'end' index
-        swap(nums[md], nums[end]);
-
-        end--;     // shrink 2's section from the back
-
-        // NOTE: do NOT md++ here
-        // Because swapped element from 'end' could be 0,1, or 2.
-        // We must re-check nums[md] again.
+void sort012Template(vector<int>& arr) {
+    int n = arr.size();
+    
+    // 1. Initialize the 3 pointers
+    int low = 0;
+    int mid = 0;
+    int high = n - 1;
+    
+    // 2. Loop until mid crosses high
+    while (mid <= high) {
+        
+        // 3. Core Logic depending on current element
+        if (arr[mid] == 0) {
+            // Put it in the '0' zone by swapping with low
+            swap(arr[low], arr[mid]);
+            low++;
+            mid++;
+        } 
+        else if (arr[mid] == 1) {
+            // It is already in the right place ('1' zone), just move mid forward
+            mid++;
+        } 
+        else { // arr[mid] == 2
+            // Put it in the '2' zone by swapping with high
+            swap(arr[mid], arr[high]);
+            high--;
+            // Notice we do NOT increment mid here! 
+            // The newly swapped element at mid needs to be evaluated in the next loop.
+        }
     }
 }
-
-};
-
 
 ⏱️ Complexity
 Time: O(n) (single pass)
