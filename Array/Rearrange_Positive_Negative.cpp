@@ -57,6 +57,7 @@ public:
 
       
 //optimized approach
+// ✅ PATTERN Used->Traversal + Two Pointer
 // Optimized Approach
 // Time Complexity = O(N)
 // Space Complexity = O(N)
