@@ -40,30 +40,35 @@ vector<int> leaders(vector<int>& arr) {
 }
 
 
-// Optimal Apprach
 
 // Optimal Approach
+// PATTERN-> Traversal / Searching
 // Time = O(n)  | Space = O(1) extra (ignoring ans array)
 
-void LeaderArr(int arr[], int n, vector<int>& ans) {
-
-    int maxi = arr[n - 1];   // last element is always a leader
-    ans.push_back(maxi);     // store the last element
-
-    // Traverse from second last element to start
+vector<int> findLeaders(vector<int>& arr) {
+    int n = arr.size();
+    vector<int> leaders;
+    
+    // 1. Base Case: The rightmost element is always a leader
+    int current_max = arr[n - 1];
+    leaders.push_back(current_max);
+    
+    // 2. Scan the array backwards from right to left
     for (int i = n - 2; i >= 0; i--) {
-
-        // If the current element is greater than the
-        // maximum seen so far on the right → it's a leader
-        if (arr[i] > maxi) {
-            ans.push_back(arr[i]);
-            maxi = arr[i];   // update maximum
+        // 3. Core Logic: If current element is strictly greater 
+        // than the max seen to its right, it's a leader!
+        if (arr[i] >= current_max) {
+            current_max = arr[i]; // Update the running maximum
+            leaders.push_back(current_max);
         }
     }
-
-    // Note: leaders are stored in reverse order now
+    
+    // 4. Since we collected leaders from back to front, 
+    // reverse the result to match original array ordering
+    reverse(leaders.begin(), leaders.end());
+    
+    return leaders;
 }
-
 int main(){
   int n=6;
   int arr[n]={10, 22, 12, 3, 0, 6};
