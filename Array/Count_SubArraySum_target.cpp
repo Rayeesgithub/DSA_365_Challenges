@@ -74,34 +74,35 @@ int subarraySum(vector<int>& nums, int k) {
 
 
 // Approach 3: Optimal using Prefix Sum + Hashmap Time: O(n) && Space: O(n)
-int subarraySum(vector<int>& nums, int k) {
+#include <vector>
+#include <unordered_map>
+using namespace std;
 
-    unordered_map<int, int> prefixSumCount;  
-    prefixSumCount[0] = 1;
-    // This means: prefix sum = 0 has occurred once.
-    // Helps when subarray starts from index 0.
-
-    int Sum = 0;   // Running prefix sum
-    int count = 0; // Count of valid subarrays
-
-    // Iterate through all numbers in array
-    for (int num : nums) {
-
-        Sum += num; // Update prefix sum
-
-        // Check if there exists a prefix such that:
-        //    Sum - prefix = k 
-        // => prefix = Sum - k
-        if (prefixSumCount.find(Sum - k) != prefixSumCount.end()) {
-
-            // Add the number of times (Sum - k) prefix appeared
-            count += prefixSumCount[Sum - k];
+int subarraySumCount(vector<int>& arr, int k) {
+    int n = arr.size();
+    unordered_map<int, int> pref_map; // Stores {prefix_sum -> how_many_times_seen}
+    
+    // Base Case: A prefix sum of 0 has occurred exactly 1 time 
+    // (handles subarrays starting from index 0)
+    pref_map[0] = 1;
+    
+    int prefix_sum = 0;
+    int count = 0;
+    
+    for (int i = 0; i < n; i++) {
+        prefix_sum += arr[i]; // Update cumulative sum
+        
+        int remove = prefix_sum - k; // Find the complement we need to discard
+        
+        // If that complement exists, add its frequency to our total count
+        if (pref_map.find(remove) != pref_map.end()) {
+            count += pref_map[remove];
         }
-
-        // Store the current prefix sum frequency
-        prefixSumCount[Sum]++;
+        
+        // Record the current prefix sum into the map
+        pref_map[prefix_sum]++;
     }
-
-    // Final answer
+    
     return count;
 }
+
