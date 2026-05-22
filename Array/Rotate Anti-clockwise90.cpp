@@ -34,7 +34,7 @@ void rotateAntiClockwise(vector<vector<int>>& arr) {
 
 
 
-// 2nd approach  time=0(n^2) && space=0(1)
+//   time=0(n^2) && space=0(1)
  void rotateAntiClockwise(vector<vector<int>>& arr) {
 
     int n = arr.size();        // rows
