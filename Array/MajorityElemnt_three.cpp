@@ -70,3 +70,55 @@ vector<int> Majority(vector<int>& arr, int n) {
 
     return ans;
 }
+
+
+
+
+/// Optimal Appproach
+// PATTERN_> Voore Algorithm
+
+#include <vector>
+#include <climits>
+using namespace std;
+
+vector<int> majorityElementN3(vector<int>& nums) {
+    int n = nums.size();
+    
+    // 1. Initialize two candidates and their corresponding counters
+    int candidate1 = INT_MIN, candidate2 = INT_MIN;
+    int count1 = 0, count2 = 0;
+    
+    // --- PHASE 1: The Voting Process ---
+    for (int i = 0; i < n; i++) {
+        if (nums[i] == candidate1) {
+            count1++;
+        } else if (nums[i] == candidate2) {
+            count2++;
+        } else if (count1 == 0) {
+            candidate1 = nums[i];
+            count1 = 1;
+        } else if (count2 == 0) {
+            candidate2 = nums[i];
+            count2 = 1;
+        } else {
+            // Triplet elimination: if current element doesn't match either 
+            // candidate and both counts > 0, decrement both counts!
+            count1--;
+            count2--;
+        }
+    }
+    
+    // --- PHASE 2: Verification Process ---
+    vector<int> result;
+    int actual_count1 = 0, actual_count2 = 0;
+    
+    for (int i = 0; i < n; i++) {
+        if (nums[i] == candidate1) actual_count1++;
+        else if (nums[i] == candidate2) actual_count2++;
+    }
+    
+    if (actual_count1 > n / 3) result.push_back(candidate1);
+    if (actual_count2 > n / 3) result.push_back(candidate2);
+    
+    return result;
+}
