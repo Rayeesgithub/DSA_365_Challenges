@@ -57,38 +57,57 @@ Space → O(n))
 
 
       
-        // Approach 3: Moore’s Voting Algorithm
+    
+             
+             
+             
+             
+             
+             // Approach 3:
+      // PATTERN-> Moore’s Voting Algorithm
         Time = O(n), Space = O(1))
             
           // Size of the array
+   
+           
+#include <vector>
+using namespace std;
+
+int majorityElementN2(vector<int>& nums) {
     int n = nums.size();
-    int cnt = 0;   // Counter for candidate
-    int el;        // Candidate element
-
-    // Step 1: Find a candidate
+    int candidate = 0;
+    int count = 0;
+    
+    // --- PHASE 1: The Voting Process ---
     for (int i = 0; i < n; i++) {
-
-        if (cnt == 0) {      // When no candidate, choose new one
-            el = nums[i];
-            cnt = 1;
-        } 
-        else if (nums[i] == el) {
-            cnt++;           // If same, increase strength
+        // If count drops to 0, choose the current element as the new candidate
+        if (count == 0) {
+            candidate = nums[i];
+            count = 1;
         }
+        // If current element matches the candidate, increment count
+        else if (nums[i] == candidate) {
+            count++;
+        }
+        // If it's a different element, decrement count (Cancellation)
         else {
-            cnt--;           // If different, decrease strength
+            count--;
         }
     }
-
-    // Step 2: Verify candidate (optional but safe)
-    int cnt1 = 0;
+    
+    // --- PHASE 2: Verification Process ---
+    // Note: If the problem statement GUARANTEES that a majority element 
+    // always exists, you can skip Phase 2 entirely and just return 'candidate'.
+    int actual_count = 0;
     for (int i = 0; i < n; i++) {
-        if (nums[i] == el) 
-            cnt1++;          // Count candidate occurrences
+        if (nums[i] == candidate) {
+            actual_count++;
+        }
     }
-
-    // Check if candidate is actually majority
-    if (cnt1 > n / 2) return el;
-
-    return -1;               // Not expected by constraints
+    
+    if (actual_count > n / 2) {
+        return candidate;
+    }
+    
+    return -1; // Return -1 if no majority element exists
 }
