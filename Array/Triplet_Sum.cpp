@@ -104,38 +104,54 @@ If triplet is new, we push it into ans using ans.push_back(triplet).
         
 
 
-        // Optimal approach  Time Complexity: O(NlogN)+O(N2), space=(1)
-        // Sort the array first to use two-pointer technique
-        sort(nums.begin(), nums.end());
-        vector<vector<int>> ans; // Vector to store the final result
+     
 
-        for (int i = 0; i < n; i++) {
-            // Skip duplicates for the first element
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
-            int j = i + 1; // Second pointer
-            int k = n - 1; // Third pointer
 
-            while (j < k) {
-                int sum = nums[i] + nums[j] + nums[k];
-                if (sum > 0) {
-                    // If the sum is greater than zero, move the third pointer left
-                    k--;
-                } else if (sum < 0) {
-                    // If the sum is less than zero, move the second pointer right
-                    j++;
-                } else {
-                    // If the sum is zero, we've found a valid triplet
-                    ans.push_back({nums[i], nums[j], nums[k]});
-                    j++;
-                    k--;
-                    // Skip duplicates for the second and third elements
-                    while (j < k && nums[j] == nums[j - 1]) j++;
-                    while (j < k && nums[k] == nums[k + 1]) k--;
-                }
+// Optimal approach  Time Complexity: O(NlogN)+O(N2), space=(1)
+        // Pattern two-pointer technique
+     #include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<vector<int>> threeSum(vector<int>& nums) {
+    int n = nums.size();
+    vector<vector<int>> result;
+    
+    // 1. Sort the array to enable the two-pointer technique and easily skip duplicates
+    sort(nums.begin(), nums.end());
+    
+    // 2. Fix the first element 'i'
+    for (int i = 0; i < n - 2; i++) {
+        // Skip duplicate values for the first element
+        if (i > 0 && nums[i] == nums[i - 1]) continue;
+        
+        // Optimization: If the lowest possible sum is > 0, no triplets can sum to 0
+        if (nums[i] + nums[i + 1] + nums[i + 2] > 0) break;
+        
+        // 3. Initialize Two Pointers for the remaining array segment
+        int left = i + 1;
+        int right = n - 1;
+        
+        while (left < right) {
+            int current_sum = nums[i] + nums[left] + nums[right];
+            
+            if (current_sum == 0) {
+                result.push_back({nums[i], nums[left], nums[right]});
+                
+                // Move pointers past duplicate values to ensure unique triplets
+                while (left < right && nums[left] == nums[left + 1]) left++;
+                while (left < right && nums[right] == nums[right - 1]) right--;
+                
+                left++;
+                right--;
+            } 
+            else if (current_sum < 0) {
+                left++; // Sum is too small, move left pointer to get a larger value
+            } 
+            else {
+                right--; // Sum is too large, move right pointer to get a smaller value
             }
         }
-        // // Convert the set of vectors to a vector of vectors
-        // vector<vector<int>> ans(st.begin(), st.end());
-        return ans; // Return the final list of unique triplets
     }
-};
+    return result;
+}
