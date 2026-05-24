@@ -7,46 +7,49 @@ Explanation : The merged array is: [-5, -3, -2, 1, 4, 5, 8], where [-5, -2, 4, 5
 
 
 //approach1->Borute force
-void Merg(vector<int>&arr1,vector<int>&arr2){
-     int n1=arr1.size(); int n2=arr2.size();
-     vector<int>ans;
-     for(int i=0; i<n1; i++){
-        ans.push_back(arr1[i]);
+void mergeSortedArrays(vector<int>& arr1, vector<int>& arr2) {
+    int n = arr1.size();
+    int m = arr2.size();
+    
+    // Insert elements of arr2 into arr1 at correct position
+    for(int i = 0; i < m; i++) {
+        arr1.push_back(arr2[i]);
+    }
+    
+    // Sort the combined array
+    sort(arr1.begin(), arr1.end());
+}
 
-     }
-     for(int i=0; i<n2; i++){
-        ans.push_back(arr2[i]);
-     }
 
-     sort(ans.begin(),ans.end());
-     for(int i=0; i<ans.size(); i++){
-        cout<<ans[i]<<" ";
-     }
-  }
+// optimal
+#include <vector>
+#include <algorithm>
+using namespace std;
 
-// approach2-> Optimal Approach
-T.C-0(n+m) S.C->0(1)
-void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-    int i = m - 1;        // pointer for nums1 last element
-    int j = n - 1;        // pointer for nums2 last element
-    int k = m + n - 1;    // pointer for nums1 final position
-
-    // Compare from the end and place the larger element at the end of nums1
-    while (i >= 0 && j >= 0) {
-        if (nums1[i] > nums2[j]) {
-            nums1[k] = nums1[i];
-            i--;
-        } else {
-            nums1[k] = nums2[j];
-            j--;
+void mergeWithoutSpace(vector<int>& arr1, vector<int>& arr2) {
+    int n = arr1.size();
+    int m = arr2.size();
+    
+    // 1. Initialize pointers at the boundary intersection
+    int i = n - 1; // Last element of arr1
+    int j = 0;     // First element of arr2
+    
+    // 2. Traversal Loop: Swap out-of-order elements across arrays
+    while (i >= 0 && j < m) {
+        if (arr1[i] > arr2[j]) {
+            swap(arr1[i], arr2[j]);
+            i--; // Move backward in arr1 to check next largest
+            j++; // Move forward in arr2 to check next smallest
+        } 
+        else {
+            // Optimization: Since both arrays are already sorted, 
+            // if arr1[i] <= arr2[j], then everything to the left of i 
+            // is guaranteed to be smaller than everything to the right of j.
+            break; 
         }
-        k--;
     }
-
-    // If nums2 still has elements left, copy them
-    while (j >= 0) {
-        nums1[k] = nums2[j];
-        j--;
-        k--;
-    }
+    
+    // 3. Final Step: Re-sort both arrays individually to fix inner placement
+    sort(arr1.begin(), arr1.end());
+    sort(arr2.begin(), arr2.end());
 }
