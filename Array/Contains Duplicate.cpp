@@ -55,7 +55,7 @@ bool containsDuplicate(vector<int>& nums) {
   return false;
 
 
-// other approach
+// other approach 1
  bool containsDuplicate(vector<int>& nums) {
         unordered_map<int, int> seen;
         for (auto it : nums) {
@@ -66,4 +66,28 @@ bool containsDuplicate(vector<int>& nums) {
         return false;
     }
 
+};
+
+// other approach 2
+
+#include <vector>
+#include <unordered_set>
+
+class Solution {
+public:
+    bool containsDuplicate(std::vector<int>& nums) {
+        std::unordered_set<int> seen;
+        
+        for (int num : nums) {
+            // If the number is already in the set, we found a duplicate
+            if (seen.find(num) != seen.end()) {
+                return true;
+            }
+            // Otherwise, add the number to the set
+            seen.insert(num);
+        }
+        
+        // No duplicates found after checking the entire array
+        return false;
+    }
 };
